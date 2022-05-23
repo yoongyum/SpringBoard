@@ -1,5 +1,6 @@
 server:
   port: 9090
+
 spring:
   devtools:
     livereload:
@@ -8,4 +9,17 @@ spring:
     cache: false
   thymeleaf:
     cache: false
+
+  #DB 설정
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yoongyum?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 1234
+
+  jpa:
+    show-sql: true #true 설정시 JPA 쿼리문 확인 가능
+    hibernate:
+      ddl-auto: update  #정의시 DB의 고유 기능을 사용할 수 있다.
+
 
