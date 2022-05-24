@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -23,18 +24,18 @@ class BoardPracticeApplicationTests {
     @Autowired
     MemberRepository memberRepository;
 
-//    @Test
+    @Test
     @Order(1)
     public void insertDummies() {//회원 등록
         IntStream.rangeClosed(1, 10).forEach(i -> {
-            Member member = Member.builder()
+            Member member = Member.MemberBuilder()
                     .id("GuestUser" + i)
                     .password("1234")
                     .name("usr" + i)
                     .role("USER")
                     .intro("잘부탁드립니다.." + i)
                     .age("20대")
-                    .datetime(new Date())
+                    .createDate(LocalDateTime.now())
                     .build();
             memberRepository.save(member);
         });
@@ -63,9 +64,9 @@ class BoardPracticeApplicationTests {
         });
     }
 
-    @Test
+//    @Test
     public void DeleteDummies(){    //303번 회원 삭제
-        Optional<Member> res = memberRepository.findBySeq(303L);
+        Optional<Member> res = memberRepository.findBySeq(305L);
         res.ifPresent(selectMember->{
             memberRepository.delete(selectMember);
         });
