@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 import java.util.stream.IntStream;
+
+@Rollback(true)
 @SpringBootTest
 class BoardPracticeApplicationTests {
 
@@ -31,6 +33,20 @@ class BoardPracticeApplicationTests {
                     .build();
             memberRepository.save(member);
         });
+    }
+
+    @Test
+    public void SelectDummies(){//Read 테스트
+        Long seq = 66L;
+        Optional<Member> res = memberRepository.findBySeq(seq);
+
+        System.out.println("=====================");
+
+        if (res.isPresent()){
+            Member member = res.get();
+            System.out.println(member);
+        }
+
     }
 
 }
