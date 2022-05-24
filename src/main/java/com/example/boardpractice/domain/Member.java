@@ -1,12 +1,16 @@
 package com.example.boardpractice.domain;
 
+import com.example.boardpractice.dto.MemberDto;
 import lombok.*;
+import org.springframework.core.annotation.Order;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
-@Builder
+@Builder(builderMethodName = "MemberBuilder")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -34,6 +38,20 @@ public class Member {
     @Column
     private String age;     //나이대
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date datetime; //생성 날짜
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createDate; //생성 날짜
+
+    public static MemberBuilder builder(MemberDto memberDto){
+        return MemberBuilder()
+                .seq(memberDto.getSeq())
+                .id(memberDto.getId())
+                .password(memberDto.getPassword())
+                .name(memberDto.getName())
+                .role(memberDto.getRole())
+                .intro(memberDto.getIntro())
+                .age(memberDto.getAge())
+                .createDate(LocalDateTime.now());
+    }
 }
