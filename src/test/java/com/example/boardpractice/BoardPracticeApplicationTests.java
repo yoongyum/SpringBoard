@@ -24,36 +24,36 @@ class BoardPracticeApplicationTests {
     MemberRepository memberRepository;
 
 //    @Test
-//    @Order(1)
-//    public void insertDummies() {//회원 등록
-//        IntStream.rangeClosed(1, 10).forEach(i -> {
-//            Member member = Member.builder()
-//                    .id("GuestUser" + i)
-//                    .password("1234")
-//                    .name("usr" + i)
-//                    .role("USER")
-//                    .intro("잘부탁드립니다.." + i)
-//                    .age("20대")
-//                    .datetime(new Date())
-//                    .build();
-//            memberRepository.save(member);
-//        });
-//    }
+    @Order(1)
+    public void insertDummies() {//회원 등록
+        IntStream.rangeClosed(1, 10).forEach(i -> {
+            Member member = Member.builder()
+                    .id("GuestUser" + i)
+                    .password("1234")
+                    .name("usr" + i)
+                    .role("USER")
+                    .intro("잘부탁드립니다.." + i)
+                    .age("20대")
+                    .datetime(new Date())
+                    .build();
+            memberRepository.save(member);
+        });
+    }
 
 //    @Test
-//    @Order(2)
-//    public void selectDummies(){//Read 테스트
-//        Optional<Member> res = memberRepository.findByName("usr1");
-//        System.out.println("=====================");
-//
-//        if (res.isPresent()){
-//            Member member = res.get();
-//            System.out.println(member);
-//        }
-//
-//    }
+    @Order(2)
+    public void selectDummies(){//Read 테스트
+        Optional<Member> res = memberRepository.findByName("usr1");
+        System.out.println("=====================");
 
-    @Test
+        if (res.isPresent()){
+            Member member = res.get();
+            System.out.println(member);
+        }
+
+    }
+
+//    @Test
     public void UpdateDummies(){//301번 멤버를 수정할 계획
         Optional<Member> res = memberRepository.findBySeq(301L);
         res.ifPresent(selectMember->{
@@ -61,7 +61,13 @@ class BoardPracticeApplicationTests {
             selectMember.setRole("ADMIN");
             memberRepository.save(selectMember);
         });
-
     }
 
+    @Test
+    public void DeleteDummies(){    //303번 회원 삭제
+        Optional<Member> res = memberRepository.findBySeq(303L);
+        res.ifPresent(selectMember->{
+            memberRepository.delete(selectMember);
+        });
+    }
 }
