@@ -7,7 +7,6 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 @Builder(builderMethodName = "MemberBuilder")
@@ -38,9 +37,8 @@ public class Member {
     @Column
     private String age;     //나이대
 
-
     @CreatedDate
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createDate; //생성 날짜
 
     public static MemberBuilder builder(MemberDto memberDto){
