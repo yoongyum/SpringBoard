@@ -24,12 +24,12 @@ class BoardPracticeApplicationTests {
     @Autowired
     MemberRepository memberRepository;
 
-    @Test
+//    @Test
     @Order(1)
     public void insertDummies() {//회원 등록
         IntStream.rangeClosed(1, 10).forEach(i -> {
             Member member = Member.MemberBuilder()
-                    .id("GuestUser" + i)
+                    .email("GuestUser" + i)
                     .password("1234")
                     .name("usr" + i)
                     .role("USER")

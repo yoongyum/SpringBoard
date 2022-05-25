@@ -19,8 +19,8 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;  //고유 번호
 
-    @Column(length= 20, unique = true)
-    private String id;  //회원 아이디 varchar(20)
+    @Column(length= 50, unique = true)
+    private String email;  //회원 아이디 varchar(20)
 
     @Column(length = 13, nullable = false)
     private String password;    //회원 비밀번호 varchar(13)
@@ -44,7 +44,7 @@ public class Member {
     public static MemberBuilder builder(MemberDto memberDto){
         return MemberBuilder()
                 .seq(memberDto.getSeq())
-                .id(memberDto.getId())
+                .email(memberDto.getEmail())
                 .password(memberDto.getPassword())
                 .name(memberDto.getName())
                 .role(memberDto.getRole())
