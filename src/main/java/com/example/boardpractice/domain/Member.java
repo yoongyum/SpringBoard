@@ -43,7 +43,6 @@ public class Member {
 
     public static MemberBuilder builder(MemberDto memberDto){
         return MemberBuilder()
-                .seq(memberDto.getSeq())
                 .email(memberDto.getEmail())
                 .password(memberDto.getPassword())
                 .name(memberDto.getName())
