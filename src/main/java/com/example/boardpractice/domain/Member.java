@@ -20,13 +20,13 @@ public class Member {
     private Long seq;  //고유 번호
 
     @Column(length= 50, unique = true)
-    private String email;  //회원 아이디 varchar(20)
+    private String email;  //회원 아이디 varchar(50)
 
     @Column(length = 13, nullable = false)
     private String password;    //회원 비밀번호 varchar(13)
 
-    @Column(length = 10, nullable = false)
-    private String name;    //회원 이름 varchar(10)
+    @Column(length = 20, nullable = false)
+    private String name;    //회원 이름 varchar(20)
 
     @Column
     private String role;    //권한 USER or ADMIN
