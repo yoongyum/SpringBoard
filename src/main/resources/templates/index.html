@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!--head-->
+<th:block th:replace="fragment/head :: headFragment('Login')"></th:block>
+
+<body class="container-fluid bg-dark">
+<!--header-->
+<th:block th:replace="fragment/header :: headerFragment"></th:block>
+<main style="background-color: cornflowerblue">
+<div class="row">
+
+<!--signIn-->
+<th:block th:replace="login/signIn :: signInFragment"></th:block>
+<th:block th:replace="board/boardList :: boardListFragment" ></th:block>
+</div>
+
+</main>
+
+</body>
+<!--footer-->
+<th:block th:replace="fragment/footer :: footerFragment"></th:block>
+</html>
