@@ -2,13 +2,12 @@ package com.example.boardpractice.domain;
 
 import com.example.boardpractice.dto.MemberDto;
 import lombok.*;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
 @Builder(builderMethodName = "MemberBuilder")
 @AllArgsConstructor
 @NoArgsConstructor
