@@ -55,18 +55,8 @@ class BoardPracticeApplicationTests {
     }
 
 //    @Test
-    public void UpdateDummies(){//301번 멤버를 수정할 계획
-        Optional<Member> res = memberRepository.findBySeq(301L);
-        res.ifPresent(selectMember->{
-            selectMember.setIntro("업데이트 확인");
-            selectMember.setRole("ADMIN");
-            memberRepository.save(selectMember);
-        });
-    }
-
-//    @Test
     public void DeleteDummies(){    //303번 회원 삭제
-        Optional<Member> res = memberRepository.findBySeq(305L);
+        Optional<Member> res = memberRepository.findById(305L);
         res.ifPresent(selectMember->{
             memberRepository.delete(selectMember);
         });
