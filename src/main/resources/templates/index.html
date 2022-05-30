@@ -6,12 +6,17 @@
 <body class="container-fluid bg-dark">
 <!--header-->
 <th:block th:replace="fragment/header :: headerFragment"></th:block>
+
 <main style="background-color: cornflowerblue">
+
 <div class="row">
 
-<!--signIn-->
-<th:block th:replace="login/signIn :: signInFragment"></th:block>
-<th:block th:replace="board/boardList :: boardListFragment" ></th:block>
+    <!--signIn-->
+    <th:block th:replace="login/signIn :: signInFragment"></th:block>
+
+    <!--Board Container-->
+    <th:block th:replace="board/boardContainer :: boardContainerFragment"></th:block>
+
 </div>
 
 </main>
