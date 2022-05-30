@@ -4,16 +4,16 @@
         <div class="col text-light" style="background-color: darkslateblue">
             <div class="d-flex justify-content-end">
                 <form action ="/post" method="post">
-                    <button class="w-40 btn btn-sm btn-info" type="submit">글 쓰러가기</button>
+                    <button class="w-40 btn btn-sm btn-info" type="submit">✏️ 글 쓰러가기</button>
                 </form>
             </div>
             <table class="table table-striped">
                 <tr class="text-start text-light">
-                    <td th:bgcolor="red">No.</td>
+                    <td>No.</td>
                     <td th:width="500">제목</td>
                     <td>글쓴이</td>
                     <td>등록일</td>
-                    <td th:bgcolor="red">조회수</td>
+                    <td>조회수</td>
                 </tr>
                 <tr class="text-start" th:each="post : ${boardList}">
                     <th scope="row">

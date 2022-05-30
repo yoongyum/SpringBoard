@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <!--head-->
-<th:block th:replace="fragment/head :: headFragment('Login')"></th:block>
+<th:block th:replace="commonFragment/head :: headFragment('Home')"></th:block>
 
 <body class="container-fluid bg-dark">
 <!--header-->
-<th:block th:replace="fragment/header :: headerFragment"></th:block>
+<th:block th:replace="commonFragment/header :: headerFragment"></th:block>
 
 <main style="background-color: cornflowerblue">
+    <div class="row">
 
-<div class="row">
+        <!--signIn-->
+        <th:block th:replace="login/signIn :: signInFragment"></th:block>
 
-    <!--signIn-->
-    <th:block th:replace="login/signIn :: signInFragment"></th:block>
+        <!--Board Container-->
+        <th:block th:replace="board/boardContainer :: boardContainerFragment"></th:block>
 
-    <!--Board Container-->
-    <th:block th:replace="board/boardContainer :: boardContainerFragment"></th:block>
-
-</div>
-
+    </div>
 </main>
 
 </body>
 <!--footer-->
-<th:block th:replace="fragment/footer :: footerFragment"></th:block>
+<th:block th:replace="commonFragment/footer :: footerFragment"></th:block>
 </html>
