@@ -1,0 +1,34 @@
+
+/*
+    포스팅 스타일
+*/
+/* 포스팅 타이틀 스타일 */
+.posting-title{
+    border: none;
+    background-color: transparent;
+    color:#FFFFFF;
+    width: 100%;
+    font-size: 50px;
+}
+.posting-title::placeholder{
+    color: lightgray;
+}
+.posting-title:focus{
+    outline: none;
+}
+
+/* 포스팅 컨텐츠 스타일 */
+.posting-content{
+    border: none;
+    background-color: transparent;
+    color:#FFFFFF;
+    height: 500px;
+    font-size: 30px;
+    width: 100%;
+}
+.posting-content::placeholder{
+    color: lightgray;
+}
+.posting-content:focus{
+    outline: none;
+}
