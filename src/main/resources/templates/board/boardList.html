@@ -1,23 +1,37 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-    <title>BOARD</title>
-</head>
-<body>
-<center>
-    <h1>게시판 테스트</h1>
-    <hr>
-    <table th:border="1" th:cellpadding="1" th:cellspacing="0">
-        <tr th:align="center">
-            <td th:bgcolor="orange" th:width="70">번호</td>
-            <td th:bgcolor="lime" th:width="100">이름</td>
-            <td th:bgcolor="lime" th:width="200">제목</td>
-            <td th:bgcolor="lime" th:width="110">등록일</td>
-            <td th:bgcolor="lime" th:width="65">조회수</td>
-        </tr>
-    </table>
-</center>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="boardListFragment">
+        <div class="col text-light" style="background-color: darkslateblue">
+            <table class="table table-striped">
+                <tr class="text-start text-light">
+                    <td th:bgcolor="red">No.</td>
+                    <td th:width="500">제목</td>
+                    <td>글쓴이</td>
+                    <td>등록일</td>
+                    <td th:bgcolor="red">조회수</td>
+                </tr>
+                <tr class="text-start" th:each="post : ${boardList}">
+                    <th scope="row">
+                        <span th:text="${post.seq}"></span>
+                    </th>
+                    <td>
+                        <a th:href="@{/board/view/(id=${post.seq})}">
+                            <span th:text="${post.title}"></span>
+                        </a>
 
-</body>
+                    </td>
+                    <td>
+                        <span th:text="${post.author}"></span>
+                    </td>
+                    <td>
+                        <span style="color: lightgray" th:text="${#temporals.format(post.createDate,'yyyy/MM/dd HH:mm')}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${post.views}"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</th:block>
 </html>
+
