@@ -46,4 +46,19 @@ public class BoardService {
         }
         return boardDtoList;
     }
+    /*
+        특정 게시물 조회
+    */
+    public BoardDto getBoard(Long seq){
+        Board board = boardRepository.findBySeq(seq).get();
+        return new BoardDto().builder()
+                .seq(board.getSeq())
+                .title(board.getTitle())
+                .author(board.getAuthor())
+                .content(board.getContent())
+                .createDate(board.getCreateDate())
+                .modifiedDate(board.getModifiedDate())
+                .views(board.getViews())
+                .build();
+    }
 }
