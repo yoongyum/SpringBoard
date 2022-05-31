@@ -1,3 +1,15 @@
+/*
+    게시판 스타일
+*/
+.board-list{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.board-list:hover{
+    text-decoration: underline;
+    color: limegreen;
+}
+
 
 /*
     포스팅 스타일
@@ -31,4 +43,26 @@
 }
 .posting-content:focus{
     outline: none;
+}
+
+/*
+    게시물 조회 스타일
+*/
+/* 게시물 조회 타이틀 */
+.viewing-title{
+    font-size: xxx-large;
+}
+/* 게시물 조회 내용 */
+.viewing-content{
+    font-size: larger;
+}
+/* 수정 및 삭제 버튼 */
+.viewing-btn{
+    color: #FFFFFF;
+    margin-left: 1rem;
+    text-decoration: none;
+}
+.viewing-btn:hover{
+    text-decoration: underline;
+    color: crimson;
 }
