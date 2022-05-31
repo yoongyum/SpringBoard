@@ -7,7 +7,7 @@
                     <button class="btn btn-sm btn-info" type="submit">✏️ 글 쓰러가기</button>
                 </form>
             </div>
-            <table class="table table-striped">
+            <table class="table table-striped table-hover">
                 <tr class="text-start text-light">
                     <td>No.</td>
                     <td th:width="500">제목</td>
@@ -20,7 +20,7 @@
                         <span th:text="${post.seq}"></span>
                     </th>
                     <td>
-                        <a th:href="@{/board/view(seq=${post.seq})}">
+                        <a class="board-list" th:href="@{/board/view(seq=${post.seq})}">
                             <span th:text="${post.title}"></span>
                         </a>
 
