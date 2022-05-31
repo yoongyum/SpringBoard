@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<th:block th:fragment="viewBoardFragment">
+    <div class="container text-light" style="background-color: cadetblue">
+        <div class="row">
+            <div class="viewing-title" th:text="${selectedBoard.title}"></div>
+            <hr>
+        </div>
+        <div class="row" style="background-color: darkgoldenrod">
+
+            <span class="col-1" th:text="${selectedBoard.author}"></span>
+
+            <div class="col">
+                <span th:text="${#temporals.format(selectedBoard.createDate,'yyyy/MM/dd HH:mm')}"></span>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a class="viewing-btn" th:href="@{/board/view/update(seq=${selectedBoard.seq})}" th:text="수정"></a>
+                <a class="viewing-btn" th:href="@{/board/view/delete(seq=${selectedBoard.seq})}" th:text="삭제"></a>
+            </div>
+        </div>
+        <div class="row mt-2 mb-5">
+            <i class="bi-eye-fill " th:text="' '+${selectedBoard.views}"></i>
+        </div>
+        <div class="row mb-5">
+            <div class="viewing-content" th:text="${selectedBoard.content}"></div>
+        </div>
+        <div class="row" style="background-color: darkgoldenrod">
+            <div class="col-auto">
+                <input class="btn btn-primary" type="button" role="button" value="글 목록" th:onclick="|location.href='@{/}'|">
+            </div>
+        </div>
+
+    </div>
+</th:block>
+</html>
