@@ -55,4 +55,11 @@ public class BoardController {
         model.addAttribute("containerState","view");
         return new ModelAndView("/index");
     }
+    
+    //특정 게시물 삭제
+    @GetMapping("/board/view/delete{seq}")
+    public ModelAndView deleteBoard(Long seq, Model model){
+        boardService.deleteBoard(seq);
+        return new ModelAndView("redirect:/");
+    }
 }
