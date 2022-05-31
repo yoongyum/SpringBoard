@@ -18,5 +18,5 @@ public class BoardDto {
     private String content;
     private LocalDateTime createDate;
     private LocalDateTime modifiedDate;
-    private Long views;
+    private int views;
 }
