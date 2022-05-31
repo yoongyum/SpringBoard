@@ -41,7 +41,10 @@ public class Board {
                 .title(boardDto.getTitle())
                 .author(boardDto.getAuthor())
                 .content(boardDto.getContent())
-                .createDate(LocalDateTime.now())
-                .views(0L);
+                .createDate(LocalDateTime.now());
+    }
+
+    public void increaseViews(){
+        this.views++;
     }
 }
