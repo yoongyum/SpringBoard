@@ -24,7 +24,7 @@ public class BoardController {
     @GetMapping("/")
     public ModelAndView list(Model model){
         showBoardList(model);
-        model.addAttribute("postBtn",false);
+        model.addAttribute("containerState","list");
         return new ModelAndView("/index");
     }
     
@@ -37,7 +37,7 @@ public class BoardController {
 
     @PostMapping("/post")//글쓰러가기 누를 시
     public ModelAndView posting(Model model){
-        model.addAttribute("postBtn",true);
+        model.addAttribute("containerState","post");
         return new ModelAndView("/index");
     }
 
@@ -45,5 +45,14 @@ public class BoardController {
     private void showBoardList(Model model){
         List<BoardDto> boardDtoList = boardService.getBoardList();
         model.addAttribute("boardList", boardDtoList);
+    }
+
+    //특정 게시물 보기
+    @GetMapping("/board/view{seq}")
+    public ModelAndView viewBoard(Long seq, Model model){
+        BoardDto boardDto = boardService.getBoard(seq);
+        model.addAttribute("selectedBoard", boardDto);
+        model.addAttribute("containerState","view");
+        return new ModelAndView("/index");
     }
 }
