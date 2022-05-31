@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -71,5 +70,12 @@ class BoardPracticeApplicationTests {
     @Test
     public void getBoard(){
         System.out.println(boardService.getBoard(31L).toString());
+    }
+
+    // 게시글 삭제
+    @Test
+    @Transactional
+    public void deleteBoard(){
+        boardService.deleteBoard(41L);
     }
 }
