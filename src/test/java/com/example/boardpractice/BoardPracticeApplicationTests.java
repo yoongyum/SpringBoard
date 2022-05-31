@@ -1,7 +1,10 @@
 package com.example.boardpractice;
 
+import com.example.boardpractice.domain.Board;
 import com.example.boardpractice.domain.Member;
+import com.example.boardpractice.repository.BoardRepository;
 import com.example.boardpractice.repository.MemberRepository;
+import com.example.boardpractice.service.BoardService;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -23,6 +26,9 @@ class BoardPracticeApplicationTests {
 
     @Autowired
     MemberRepository memberRepository;
+
+    @Autowired
+    BoardService boardService;
 
 //    @Test
     @Order(1)
@@ -60,5 +66,10 @@ class BoardPracticeApplicationTests {
         res.ifPresent(selectMember->{
             memberRepository.delete(selectMember);
         });
+    }
+
+    @Test
+    public void getBoard(){
+        System.out.println(boardService.getBoard(31L).toString());
     }
 }
