@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="boardListFragment">
-        <div class="col text-light" style="background-color: darkslateblue">
+        <div class="text-light" style="background-color: darkslateblue">
             <div class="d-flex justify-content-end">
                 <form action ="/post" method="post">
                     <button class="w-40 btn btn-sm btn-info" type="submit">✏️ 글 쓰러가기</button>
@@ -20,7 +20,7 @@
                         <span th:text="${post.seq}"></span>
                     </th>
                     <td>
-                        <a th:href="@{/board/view/(id=${post.seq})}">
+                        <a th:href="@{/board/view(seq=${post.seq})}">
                             <span th:text="${post.title}"></span>
                         </a>
 
