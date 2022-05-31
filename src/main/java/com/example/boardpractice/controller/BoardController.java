@@ -50,8 +50,7 @@ public class BoardController {
     //특정 게시물 보기
     @GetMapping("/board/view{seq}")
     public ModelAndView viewBoard(Long seq, Model model){
-        BoardDto boardDto = boardService.getBoard(seq);
-        model.addAttribute("selectedBoard", boardDto);
+        model.addAttribute("selectedBoard", boardService.getBoard(seq));
         model.addAttribute("containerState","view");
         return new ModelAndView("/index");
     }

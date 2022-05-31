@@ -52,6 +52,7 @@ public class BoardService {
     */
     public BoardDto getBoard(Long seq){
         Board board = boardRepository.findBySeq(seq).get();
+        board.increaseViews();
         return new BoardDto().builder()
                 .seq(board.getSeq())
                 .title(board.getTitle())
