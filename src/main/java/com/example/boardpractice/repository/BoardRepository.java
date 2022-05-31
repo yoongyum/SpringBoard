@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface BoardRepository extends JpaRepository<Board,Long> {
     Board save(Board board);
     Optional<Board> findBySeq(Long seq);
+    void deleteBySeq(Long seq);
 }
