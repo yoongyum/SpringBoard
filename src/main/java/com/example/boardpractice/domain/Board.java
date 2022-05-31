@@ -32,8 +32,9 @@ public class Board {
     private LocalDateTime createDate;   //생성 날짜
 
     private LocalDateTime modifiedDate; //최종 수정 날짜
-    
-    private Long views; //조회수
+
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int views; //조회수
 
     public static BoardBuilder builder(BoardDto boardDto){
         return BoardBuilder()
