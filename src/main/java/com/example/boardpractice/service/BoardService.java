@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -60,5 +61,15 @@ public class BoardService {
                 .modifiedDate(board.getModifiedDate())
                 .views(board.getViews())
                 .build();
+    }
+
+    /*
+        특정 게시물 삭제
+    */
+    public void deleteBoard(Long seq){
+        Optional<Board> res = boardRepository.findBySeq(seq);
+        res.ifPresent(board -> {
+            boardRepository.delete(board);
+        });
     }
 }
