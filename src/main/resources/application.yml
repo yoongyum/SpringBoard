@@ -2,6 +2,8 @@ server:
   port: 9090
 
 spring:
+  profiles:
+    include: oauth
   devtools:
     livereload:
       enabled: true
@@ -18,7 +20,7 @@ spring:
     password: 1234
 
   jpa:
-    show-sql: true #true ??? JPA ??? ?? ??
+    show-sql: true #if true, Show DB processing
     hibernate:
-      ddl-auto: update  #DDL ??? DB? ?? ?? ?? ??
+      ddl-auto: update  #DDL
 
