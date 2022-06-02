@@ -22,42 +22,42 @@ import java.util.Map;
 @Controller
 public class MemberController {
 
-    private final MemberService memberService;
-    private final CheckMemberEmailValidator checkMemberEmailValidator;
-    private final CheckMemberNameValidator checkMemberNameValidator;
-
-    @InitBinder
-    public void validatorBinder(WebDataBinder binder){
-        binder.addValidators(checkMemberEmailValidator);
-        binder.addValidators(checkMemberNameValidator);
-    }
-
-    @GetMapping("/member/insertMember")
-    public ModelAndView create(@Valid MemberDto memberDto, Errors errors ,Model model) {
-        model.addAttribute("memberDto", memberDto);
-        return new ModelAndView("/member/insertMember");
-    }
-
-
-    //회원가입
-    @PostMapping("/member")
-    public ModelAndView insertMember(@Valid MemberDto memberDto, Errors errors, Model model) {
-        if (errors.hasErrors()) {
-            //회원가입 실패 시 입력 데이터값을 유지
-            model.addAttribute("memberDto", memberDto);
-            //유효성 통과 못한 필드와 에러메세지 핸들링
-            Map<String, String> validationResult = memberService.validationHandler(errors);
-
-            for (String key : validationResult.keySet()) {//key : 메세지 -> 파라미터로 전달
-                model.addAttribute(key, validationResult.get(key));
-            }
-
-            //회원가입 페이지로 다시 보내기
-            return new ModelAndView("/member/insertMember");
-        }
-
-        //회원가입 유효성 통과시
-        memberService.insertMember(memberDto);
-        return new ModelAndView("redirect:");
-    }
+//    private final MemberService memberService;
+//    private final CheckMemberEmailValidator checkMemberEmailValidator;
+//    private final CheckMemberNameValidator checkMemberNameValidator;
+//
+//    @InitBinder
+//    public void validatorBinder(WebDataBinder binder){
+//        binder.addValidators(checkMemberEmailValidator);
+//        binder.addValidators(checkMemberNameValidator);
+//    }
+//
+//    @GetMapping("/member/insertMember")
+//    public ModelAndView create(@Valid MemberDto memberDto, Errors errors ,Model model) {
+//        model.addAttribute("memberDto", memberDto);
+//        return new ModelAndView("/member/insertMember");
+//    }
+//
+//
+//    //회원가입
+//    @PostMapping("/member")
+//    public ModelAndView insertMember(@Valid MemberDto memberDto, Errors errors, Model model) {
+//        if (errors.hasErrors()) {
+//            //회원가입 실패 시 입력 데이터값을 유지
+//            model.addAttribute("memberDto", memberDto);
+//            //유효성 통과 못한 필드와 에러메세지 핸들링
+//            Map<String, String> validationResult = memberService.validationHandler(errors);
+//
+//            for (String key : validationResult.keySet()) {//key : 메세지 -> 파라미터로 전달
+//                model.addAttribute(key, validationResult.get(key));
+//            }
+//
+//            //회원가입 페이지로 다시 보내기
+//            return new ModelAndView("/member/insertMember");
+//        }
+//
+//        //회원가입 유효성 통과시
+//        memberService.insertMember(memberDto);
+//        return new ModelAndView("redirect:");
+//    }
 }
