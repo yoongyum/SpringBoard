@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="sideLFragment">
+    <div class="col-3" style="background-color: deeppink">
+        <!--signIn-->
+        <div th:if="${memberName == null}">
+            <th:block th:if="${memberName == null}" th:replace="login/signIn :: signInFragment"></th:block>
+        </div>
+        <!--profile-->
+        <div th:if="${memberName != null}">
+            <th:block th:replace="login/prof :: profFragment"></th:block>
+        </div>
+    </div>
+</th:block>
+</html>
