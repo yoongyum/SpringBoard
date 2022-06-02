@@ -8,8 +8,8 @@
                 </form>
             </div>
             <table class="table table-striped table-hover">
-                <tr class="text-start text-light">
-                    <td>No.</td>
+                <tr class="text-start" >
+                    <td >No.</td>
                     <td th:width="500">제목</td>
                     <td>글쓴이</td>
                     <td>등록일</td>
@@ -17,7 +17,7 @@
                 </tr>
                 <tr class="text-start" th:each="post : ${boardList}">
                     <th scope="row">
-                        <span th:text="${post.seq}"></span>
+                        <span style="color: #FFFFFF" th:text="${post.seq}"></span>
                     </th>
                     <td>
                         <a class="board-list" th:href="@{/board/view(seq=${post.seq})}">
@@ -32,7 +32,7 @@
                         <span style="color: lightgray" th:text="${#temporals.format(post.createDate,'yyyy/MM/dd HH:mm')}"></span>
                     </td>
                     <td>
-                        <span th:text="${post.views}"></span>
+                        <span style="color: #FFFFFF" th:text="${post.views}"></span>
                     </td>
                 </tr>
             </table>
