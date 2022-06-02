@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>test</h1>
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="profFragment">
+        <div class="container py-3 align-item-center text-center" style="background-color: #FEE500">
+            <div th:text="${memberName}+님"></div>
+            <button class="w-40 btn btn-lg btn-success" type="button" onclick = "location.href = '/logout'">Log out</button>
+        </div>
+    </th:block>
 </html>
