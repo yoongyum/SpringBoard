@@ -3,19 +3,17 @@
 <!--head-->
 <th:block th:replace="commonFragment/head :: headFragment('Home')"></th:block>
 
-<body class="container-fluid bg-dark">
+<body class="bg-dark">
 <!--header-->
 <th:block th:replace="commonFragment/header :: headerFragment"></th:block>
 
-<main style="background-color: cornflowerblue">
+<main class="container-fluid" style="background-color: cornflowerblue">
     <div class="row">
-
-        <!--signIn-->
-        <th:block th:replace="login/signIn :: signInFragment"></th:block>
+        <!--LeftSideBar-->
+        <th:block th:replace="commonFragment/leftSide :: sideLFragment"></th:block>
 
         <!--Board Container-->
         <th:block th:replace="board/boardContainer :: boardContainerFragment"></th:block>
-
     </div>
 </main>
 

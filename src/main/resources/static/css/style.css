@@ -7,7 +7,8 @@
 }
 .board-list:hover{
     text-decoration: underline;
-    color: limegreen;
+    color: #FFFFFF;
+    mix-blend-mode: difference;
 }
 
 
@@ -65,4 +66,11 @@
 .viewing-btn:hover{
     text-decoration: underline;
     color: crimson;
+}
+
+
+
+.btn-kakao{
+    background-color: #FEE500;
+    color: saddlebrown;
 }
