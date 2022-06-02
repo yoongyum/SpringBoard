@@ -25,11 +25,11 @@ public class MemberService {
     /*
             회원가입
     */
-    public Member insertMember(MemberDto memberDto){
-        return memberRepository.save(Member
-                .builder(memberDto)
-                .build());
-    }
+//    public Member insertMember(MemberDto memberDto){
+//        return memberRepository.save(Member
+//                .builder(memberDto)
+//                .build());
+//    }
 
     //회원가입 유효성 체크
     public Map<String, String> validationHandler(Errors errors){
