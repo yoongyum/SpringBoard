@@ -34,6 +34,9 @@ public class Member {
     private String intro;   //자기소개 varchar(200)
 
     @Column
+    private String picture; //프로필 사진
+
+    @Column
     private String age;     //나이대
 
     @CreatedDate
@@ -49,5 +52,12 @@ public class Member {
                 .intro(memberDto.getIntro())
                 .age(memberDto.getAge())
                 .createDate(LocalDateTime.now());
+    }
+
+    public Member update(String name, String picture){
+        this.name = name;
+        this.picture = picture;
+
+        return this;
     }
 }
