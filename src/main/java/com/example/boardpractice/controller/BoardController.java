@@ -42,7 +42,7 @@ public class BoardController {
     @PostMapping("/insert")//글쓰기 버튼 클릭 시
     public ModelAndView insertBoard(BoardDto boardDto, Errors errors, Model model){
         //게시글 추가
-        boardService.addPost(boardDto);
+        boardService.addPost(boardDto,httpSession);
         return new ModelAndView("redirect:/");
     }
 
@@ -72,11 +72,6 @@ public class BoardController {
 
 
     public void checkSessionMember(Model model){
-//        HttpSession httpSession = request.getSession(false);
-//        if(httpSession == null) {
-//            model.addAttribute("memberName",null);
-//            return;
-//        }
         SessionMember member = (SessionMember) httpSession.getAttribute("member");
         if(member != null){
             System.out.println("로그인 중인 멤버 발견 성공!");

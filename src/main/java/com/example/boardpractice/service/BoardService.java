@@ -1,5 +1,6 @@
 package com.example.boardpractice.service;
 
+import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.domain.Board;
 import com.example.boardpractice.dto.BoardDto;
 import com.example.boardpractice.repository.BoardRepository;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +26,9 @@ public class BoardService {
     /*
         게시글 추가
     */
-    public Board addPost(BoardDto boardDto){
+    public Board addPost(BoardDto boardDto, HttpSession session){
+        SessionMember member = (SessionMember) session.getAttribute("member");
+        boardDto.setAuthor(member.getName());
         return boardRepository.save(Board
                 .builder(boardDto)
                 .build());
