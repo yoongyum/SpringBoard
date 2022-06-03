@@ -71,6 +71,10 @@
 
 
 .btn-kakao{
-    background-color: #FEE500;
-    color: saddlebrown;
+    border: none;
+    background-color: transparent;
+}
+.btn-kakao:hover{
+    background-color: black;
+    opacity: 0.9;
 }
