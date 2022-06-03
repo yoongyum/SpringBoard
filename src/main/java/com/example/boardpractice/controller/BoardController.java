@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class BoardController {
 //    }
 
     @GetMapping("/")
-    public ModelAndView list(Model model){
+    public ModelAndView list(Model model,HttpServletRequest request,HttpServletResponse response){
         showBoardList(model);
 
         model.addAttribute("containerState","list");
@@ -45,27 +47,22 @@ public class BoardController {
     }
 
     @PostMapping("/post")//글쓰러가기 누를 시
-    public ModelAndView posting(Model model){
+    public ModelAndView posting(Model model,HttpServletRequest request){
         model.addAttribute("containerState","post");
         checkSessionMember(model);
         return new ModelAndView("/index");
     }
 
-    //전체 게시글리스트 전달
-    private void showBoardList(Model model){
-        List<BoardDto> boardDtoList = boardService.getBoardList();
-        model.addAttribute("boardList", boardDtoList);
-    }
 
     //특정 게시물 보기
     @GetMapping("/board/view{seq}")
-    public ModelAndView viewBoard(Long seq, Model model){
+    public ModelAndView viewBoard(Long seq, Model model,HttpServletRequest request){
         model.addAttribute("selectedBoard", boardService.getBoard(seq));
         model.addAttribute("containerState","view");
         checkSessionMember(model);
         return new ModelAndView("/index");
     }
-    
+
     //특정 게시물 삭제
     @GetMapping("/board/view/delete{seq}")
     public ModelAndView deleteBoard(Long seq, Model model){
@@ -75,12 +72,24 @@ public class BoardController {
 
 
     public void checkSessionMember(Model model){
+//        HttpSession httpSession = request.getSession(false);
+//        if(httpSession == null) {
+//            model.addAttribute("memberName",null);
+//            return;
+//        }
         SessionMember member = (SessionMember) httpSession.getAttribute("member");
         if(member != null){
-            System.out.println("로그인중인 멤버 발견!");
-            model.addAttribute("memberName", member.getName());
+            System.out.println("로그인 중인 멤버 발견 성공!");
+            model.addAttribute("member", member);
         }else{
-            model.addAttribute("memberName",null);
+            System.out.println("로그인 중인 멤버 발견 실패");
+            model.addAttribute("member",null);
         }
+    }
+
+    //전체 게시글리스트 전달
+    private void showBoardList(Model model){
+        List<BoardDto> boardDtoList = boardService.getBoardList();
+        model.addAttribute("boardList", boardDtoList);
     }
 }
