@@ -39,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()//URL별 권한 관리
-                    .antMatchers("/","/index").permitAll()
-//                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                    .antMatchers("/","/index","/board/view**").permitAll()
+                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
 //                    .anyRequest().authenticated()   //anyRequest : 설정된 값들 이외 나머지 URL 나타냄, authenticated : 인증된 사용자
                 .and()
                     .logout()
