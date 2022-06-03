@@ -42,7 +42,7 @@ public class OAuthAttributes {
         return OAuthAttributes.builder()
                 .name((String) kakaoProfile.get("nickname"))
                 .email((String) kakaoAccount.get("email"))
-                .picture((String) kakaoProfile.get("picture_image_url"))
+                .picture((String) kakaoProfile.get("profile_image_url"))
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
@@ -53,7 +53,7 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .picture(picture)
-                .role(Role.USER) // 기본 권한
+                .role(Role.ADMIN) // 기본 권한
                 .build();
     }
 
