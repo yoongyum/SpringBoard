@@ -1,5 +1,7 @@
 package com.example.boardpractice.dto;
 
+import com.example.boardpractice.auth.dto.SessionMember;
+import com.example.boardpractice.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 public class BoardDto {
     private Long seq;
     private String title;
-    private String author;
+    private Member author;
     private String content;
     private LocalDateTime createDate;
     private LocalDateTime modifiedDate;

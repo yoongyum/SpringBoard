@@ -2,8 +2,10 @@ package com.example.boardpractice.service;
 
 import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.domain.Board;
+import com.example.boardpractice.domain.Member;
 import com.example.boardpractice.dto.BoardDto;
 import com.example.boardpractice.repository.BoardRepository;
+import com.example.boardpractice.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,18 +19,21 @@ import java.util.Optional;
 @Transactional
 @Service
 public class BoardService {
-    private BoardRepository boardRepository;
+    private final BoardRepository boardRepository;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public BoardService(BoardRepository boardRepository){
+    public BoardService(BoardRepository boardRepository, MemberRepository memberRepository){
         this.boardRepository = boardRepository;
+        this.memberRepository = memberRepository;
     }
     /*
         게시글 추가
     */
     public Board addPost(BoardDto boardDto, HttpSession session){
         SessionMember member = (SessionMember) session.getAttribute("member");
-        boardDto.setAuthor(member.getName());
+        Member m = memberRepository.findByEmail(member.getEmail()).get();
+        boardDto.setAuthor(m);
         return boardRepository.save(Board
                 .builder(boardDto)
                 .build());

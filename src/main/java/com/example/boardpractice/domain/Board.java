@@ -1,16 +1,14 @@
 package com.example.boardpractice.domain;
 
+import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.dto.BoardDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
 @Builder(builderMethodName = "BoardBuilder")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,7 +21,8 @@ public class Board {
 
     private String title;
 
-    private String author;  //글쓴이 유저 네임
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
+    private Member author;  //글쓴이 유저
 
     private String content; //글 내용
 
