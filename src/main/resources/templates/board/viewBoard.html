@@ -8,7 +8,7 @@
         </div>
         <div class="row" style="background-color: darkgoldenrod">
 
-            <span class="col-1" th:text="${selectedBoard.author}"></span>
+            <span class="col-1" th:text="${selectedBoard.author.name}"></span>
 
             <div class="col">
                 <span th:text="${#temporals.format(selectedBoard.createDate,'yyyy/MM/dd HH:mm')}"></span>
