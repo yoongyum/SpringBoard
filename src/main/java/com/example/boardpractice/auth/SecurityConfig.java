@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
                 // Spring Security should completely ignore URLs starting with /resources/
-                .antMatchers("/css/**","/img/**");
+                .antMatchers("/css/**","/asset/**");
     }
 
 
@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/","/index","/board/view**").permitAll()
                     .antMatchers("/api/v1/**").hasRole(Role.USER.name())
 //                    .anyRequest().authenticated()   //anyRequest : 설정된 값들 이외 나머지 URL 나타냄, authenticated : 인증된 사용자
+
                 .and()
                     .logout()
 
