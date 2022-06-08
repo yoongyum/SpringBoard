@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="signInFragment">
-        <style>
-            .form-floating{
-                margin-bottom: 20px;
-            }
-            .btn{
-                margin: 10px;
-            }
-        </style>
-        <!-- 컴포넌트 영역    -->
-        <div class="container py-3 align-item-center text-center" style="background-color: darkorchid">
-            <form action ="/login" method="post">
-                <div class="text-center text-light">
-                    <h2>로그인</h2>
-                </div>
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
-                </div>
-                <button class="w-40 btn btn-lg btn-primary" type="submit">Log in</button>
-                <button class="w-40 btn btn-lg btn-success" type="button" onclick = "location.href = '/member/insertMember'">Register</button>
-                <img class="btn-kakao" src="/asset/img/kakaoBtn_Long.png" alt="kakaoLogin" type="button" onclick = "location.href = '/oauth2/authorization/kakao'"/>
+<th:block th:fragment="signInFragment">
+    <style>
+        .form-floating {
+            margin-bottom: 20px;
+        }
 
-            </form>
-        </div>
-    </th:block>
+        .btn {
+            margin: 10px;
+        }
+    </style>
+    <!-- 컴포넌트 영역    -->
+    <div class="container py-3 align-item-center text-center" style="background-color: darkorchid">
+        <form action="/login" method="post">
+            <div class="text-center text-light">
+                <h2>로그인</h2>
+            </div>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" name="password"
+                       placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <button class="w-40 btn btn-lg btn-primary" type="submit">Log in</button>
+            <button class="w-40 btn btn-lg btn-success" type="button" onclick="location.href = '/member/insertMember'">
+                Register
+            </button>
+            <img class="btn-kakao" src="/asset/img/kakaoBtn_Long.png" alt="kakaoLogin" type="button"
+                 onclick="location.href = '/oauth2/authorization/kakao'"/>
+
+        </form>
+    </div>
+</th:block>
 </html>

@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <!--head-->
-<th:block th:replace="commonFragment/head :: headFragment('Home')"></th:block>
+<th:block th:replace="commonFragment/head :: headFragment('Home')"/>
 
 <body class="bg-dark">
-<!--header-->
-<th:block th:replace="commonFragment/header :: headerFragment"></th:block>
+<div class="container-main" style="position: absolute">
+    <!--header-->
+    <th:block th:replace="commonFragment/header :: headerFragment"/>
 
-<main class="container-fluid" style="background-color: cornflowerblue">
-    <div class="row">
-        <!--LeftSideBar-->
-        <th:block th:replace="commonFragment/leftSide :: sideLFragment"></th:block>
-
-        <!--Board Container-->
-        <th:block th:replace="board/boardContainer :: boardContainerFragment"></th:block>
+    <main class="container-fluid" style="background-color: cornflowerblue">
+        <div class="row">
+            <!--LeftSideBar-->
+            <th:block th:replace="commonFragment/leftSide :: sideLFragment"/>
+            <!--Board Container-->
+            <th:block th:replace="board/boardContainer :: boardContainerFragment"/>
+        </div>
+    </main>
+    <!--footer-->
+    <th:block th:replace="commonFragment/footer :: footerFragment"/>
+</div>
+<div class="modal-test">
+    <div class="modal-content">
+        sdfasdf
     </div>
-</main>
-
+</div>
 </body>
-<!--footer-->
-<th:block th:replace="commonFragment/footer :: footerFragment"></th:block>
 </html>

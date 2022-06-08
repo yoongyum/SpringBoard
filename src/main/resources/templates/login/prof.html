@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="profFragment">
-        <div class="container py-3" style="background-color: #FEE500">
-            <div class="row g-2 align-items-center">
-                <div class="col-2 align-items-center" >
-                    <img class="prof-kakao" th:src="${member.picture}" alt="kakaoProfile"/>
-                </div>
-                <div class="col">
-                    <div th:text="${member.name}+님"></div>
-                </div>
-                <div class="col">
-                    <button class="w-40 btn btn-sm btn-success" type="button" onclick = "location.href = '/logout'">Log out</button>
-                </div>
+<th:block th:fragment="profFragment">
+    <div class="container py-3" style="background-color: #FEE500">
+        <div class="row g-2 align-items-center">
+            <div class="col-2 align-items-center">
+                <img class="prof-kakao" th:src="${member.picture}" alt="kakaoProfile"/>
+            </div>
+            <div class="col">
+                <div th:text="${member.name}+님"></div>
+            </div>
+            <div class="col">
+                <button class="w-40 btn btn-sm btn-success" type="button" onclick="location.href = '/logout'">Log out
+                </button>
             </div>
         </div>
-    </th:block>
+    </div>
+</th:block>
 </html>

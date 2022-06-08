@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="boardListFragment">
-        <div class="container text-light">
-            <div class="d-flex justify-content-end">
-                <form action ="/post" method="post">
-                    <button class="btn btn-sm btn-info" type="submit">✏️ 글 쓰러가기</button>
-                </form>
-            </div>
-            <table class="table table-striped table-hover">
-                <tr class="text-start" >
-                    <td style="color: #FFFFFF">No.</td>
-                    <td style="color: #FFFFFF" th:width="500">제목</td>
-                    <td style="color: #FFFFFF" >작성자</td>
-                    <td style="color: #FFFFFF">등록일</td>
-                    <td style="color: #FFFFFF">조회수</td>
-                </tr>
-                <tr class="text-start" th:each="post : ${boardList}">
-                    <th scope="row">
-                        <span style="color: #FFFFFF" th:text="${post.seq}"></span>
-                    </th>
-                    <td>
-                        <a class="board-list" th:href="@{/board/view(seq=${post.seq})}">
-                            <span th:text="${post.title}"></span>
-                        </a>
-
-                    </td>
-                    <td>
-<!--                        <span>empty</span>-->
-                        <span style="color: #FEE500" th:text="${post.author.name}"></span>
-                    </td>
-                    <td>
-                        <span style="color: lightgray" th:text="${#temporals.format(post.createDate,'yyyy/MM/dd HH:mm')}"></span>
-                    </td>
-                    <td>
-                        <span style="color: #FFFFFF" th:text="${post.views}"></span>
-                    </td>
-                </tr>
-            </table>
+    <div class="container text-light">
+        <div class="d-flex justify-content-end">
+            <form action="/post" method="post">
+                <button class="btn btn-sm btn-info" type="submit">✏️ 글 쓰러가기</button>
+            </form>
         </div>
+        <table class="table table-striped table-hover">
+            <tr class="text-start">
+                <td style="color: #FFFFFF">No.</td>
+                <td style="color: #FFFFFF" th:width="500">제목</td>
+                <td style="color: #FFFFFF">작성자</td>
+                <td style="color: #FFFFFF">등록일</td>
+                <td style="color: #FFFFFF">조회수</td>
+            </tr>
+            <tr class="text-start" th:each="post : ${boardList}">
+                <th scope="row">
+                    <span style="color: #FFFFFF" th:text="${post.seq}"></span>
+                </th>
+                <td>
+                    <a class="board-list" th:href="@{/board/view(seq=${post.seq})}">
+                        <span th:text="${post.title}"></span>
+                    </a>
+
+                </td>
+                <td>
+                    <!--                        <span>empty</span>-->
+                    <span style="color: #FEE500" th:text="${post.author.name}"></span>
+                </td>
+                <td>
+                    <span style="color: lightgray"
+                          th:text="${#temporals.format(post.createDate,'yyyy/MM/dd HH:mm')}"></span>
+                </td>
+                <td>
+                    <span style="color: #FFFFFF" th:text="${post.views}"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
 </th:block>
 </html>
 

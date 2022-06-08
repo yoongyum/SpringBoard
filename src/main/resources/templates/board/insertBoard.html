@@ -6,11 +6,12 @@
             <div class="row">
                 <input class="posting-title" type="text" name="title" placeholder="제목">
                 <hr>
-                <textarea class="posting-content" type="text" name="content"  placeholder="내용을 입력하세요.."></textarea>
+                <textarea class="posting-content" type="text" name="content" placeholder="내용을 입력하세요.."></textarea>
             </div>
             <div class="row">
                 <div class="col-auto">
-                    <input class="btn btn-primary" type="button" role="button" value="글 목록" th:onclick="|location.href='@{/}'|">
+                    <input class="btn btn-primary" type="button" role="button" value="글 목록"
+                           th:onclick="|location.href='@{/}'|">
                 </div>
                 <div class="col-auto">
                     <input class="btn btn-primary" type="submit" role="button" value="글 쓰기">

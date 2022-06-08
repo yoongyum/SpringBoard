@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="boardContainerFragment" >
+<th:block th:fragment="boardContainerFragment">
     <div class="col-6 text-light" style="background-color: black">
         <div th:if="${containerState == 'list'}">
-            <th:block th:replace="board/boardList :: boardListFragment" ></th:block>
+            <th:block th:replace="board/boardList :: boardListFragment"></th:block>
         </div>
         <div th:if="${containerState == 'post'}">
             <th:block th:replace="board/insertBoard :: insertBoardFragment"></th:block>
