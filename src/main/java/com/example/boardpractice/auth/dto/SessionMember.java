@@ -2,14 +2,16 @@ package com.example.boardpractice.auth.dto;
 
 import com.example.boardpractice.domain.Member;
 import com.example.boardpractice.domain.Role;
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Getter
+@Data
 public class SessionMember implements Serializable {
 
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식이 올바르지 않습니다.")
