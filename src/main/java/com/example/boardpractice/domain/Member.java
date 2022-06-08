@@ -42,20 +42,12 @@ public class Member {
     @Column
     private String age;     //나이대
 
-//    @CreatedDate
-//    @Column(updatable = false, nullable = false)
-//    private LocalDateTime createDate; //생성 날짜
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createDate; //생성 날짜
 
-//    public static MemberBuilder builder(MemberDto memberDto){
-//        return MemberBuilder()
-//                .email(memberDto.getEmail())
-//                .password(memberDto.getPassword())
-//                .name(memberDto.getName())
-//                .role(memberDto.getRole())
-//                .intro(memberDto.getIntro())
-//                .age(memberDto.getAge())
 //                .createDate(LocalDateTime.now());
-//    }
+
     public static MemberBuilder builder(SessionMember sessionMember){
         return MemberBuilder()
                 .name(sessionMember.getName())
@@ -64,10 +56,10 @@ public class Member {
                 .role(Role.USER);
     }
 
-    public Member update(String name, String picture){
+    //회원 정보 수정
+    public Member updateInfo(String name, String intro){
         this.name = name;
-        this.picture = picture;
-
+        this.intro = intro;
         return this;
     }
     public String getRoleKey(){
