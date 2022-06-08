@@ -53,7 +53,7 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .picture(picture)
-                .role(Role.ADMIN) // 기본 권한
+                .role(Role.USER) // 기본 권한
                 .build();
     }
 
