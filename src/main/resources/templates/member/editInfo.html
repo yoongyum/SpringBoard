@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="editInfoFragment">
+    <form action="/member/edit" method="post">
+        <input type="text" name="name" th:value="${member.name}" >
+        <input type="text" name="intro" th:value="${member.intro}" placeholder="간단하게 자기소개해주세요 ^^">
+        <button type="submit">수정</button>
+        <button type="button" onclick="location.href = '/member/info'">취소</button>
+    </form>
+</th:block>
+</html>
