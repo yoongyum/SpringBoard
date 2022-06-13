@@ -23,8 +23,8 @@ public class Member {
     @Column(length= 50, unique = true)
     private String email;  //회원 아이디 varchar(50)
 
-//    @Column(length = 13, nullable = false)
-//    private String password;    //회원 비밀번호 varchar(13)
+    @Column(length = 13)
+    private String password;    //회원 비밀번호 varchar(13)
 
     @Column(length = 20, nullable = false)
     private String name;    //회원 이름 varchar(20)
@@ -52,7 +52,9 @@ public class Member {
         return MemberBuilder()
                 .name(sessionMember.getName())
                 .email(sessionMember.getEmail())
+                .age(sessionMember.getAge())
                 .picture(sessionMember.getPicture())
+                .intro(sessionMember.getIntro())
                 .role(Role.USER);
     }
 
