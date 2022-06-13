@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="viewInfoFragment">
+    <div class="info-nickname mb-1" th:text="${member.name}"></div>
+    <div class="info-intro mb-3" th:text="${member.intro}"></div>
+    <button class="btn btn-danger btn-sm" type="button" onclick="edit()">수정</button>
+    <div th:text="${member.email}"></div>
+</th:block>
+</html>
