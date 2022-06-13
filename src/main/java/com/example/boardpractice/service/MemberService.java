@@ -1,5 +1,6 @@
 package com.example.boardpractice.service;
 
+import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.domain.Member;
 import com.example.boardpractice.dto.MemberDto;
 import com.example.boardpractice.repository.MemberRepository;
@@ -43,4 +44,11 @@ public class MemberService {
         return validator;
     }
 
+    public Member updateInfo(SessionMember sessionMember){
+        Member member = memberRepository.findByEmail(sessionMember.getEmail())
+                .map(entity -> entity.updateInfo(sessionMember.getName(), sessionMember.getIntro()))
+                .orElse(null);
+
+        return memberRepository.save(member);
+    }
 }

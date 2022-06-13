@@ -1,5 +1,6 @@
 package com.example.boardpractice.controller;
 
+import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.dto.MemberDto;
 import com.example.boardpractice.service.MemberService;
 import com.example.boardpractice.validator.CheckMemberEmailValidator;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -22,21 +25,22 @@ import java.util.Map;
 @Controller
 public class MemberController {
 
-//    private final MemberService memberService;
-//    private final CheckMemberEmailValidator checkMemberEmailValidator;
-//    private final CheckMemberNameValidator checkMemberNameValidator;
-//
-//    @InitBinder
-//    public void validatorBinder(WebDataBinder binder){
-//        binder.addValidators(checkMemberEmailValidator);
-//        binder.addValidators(checkMemberNameValidator);
-//    }
-//
-//    @GetMapping("/member/insertMember")
-//    public ModelAndView create(@Valid MemberDto memberDto, Errors errors ,Model model) {
-//        model.addAttribute("memberDto", memberDto);
-//        return new ModelAndView("/member/insertMember");
-//    }
+    private final MemberService memberService;
+    private final CheckMemberEmailValidator checkMemberEmailValidator;
+    private final CheckMemberNameValidator checkMemberNameValidator;
+    private final HttpSession httpSession;
+
+    @InitBinder
+    public void validatorBinder(WebDataBinder binder){
+        binder.addValidators(checkMemberEmailValidator);
+        binder.addValidators(checkMemberNameValidator);
+    }
+
+    @GetMapping("/member/insertMember")
+    public ModelAndView create(@Valid MemberDto memberDto, Errors errors ,Model model) {
+        model.addAttribute("memberDto", memberDto);
+        return new ModelAndView("/member/insertMember");
+    }
 //
 //
 //    //회원가입
@@ -60,4 +64,20 @@ public class MemberController {
 //        memberService.insertMember(memberDto);
 //        return new ModelAndView("redirect:");
 //    }
+
+    @GetMapping("/member/info")
+    public ModelAndView goInfo(Model model){
+        SessionMember sessionMember = (SessionMember) httpSession.getAttribute("member");
+        model.addAttribute("member", sessionMember);
+        return new ModelAndView("/member/info");
+    }
+
+    @PostMapping("/member/edit")
+    public ModelAndView doEdit(@RequestParam("name") String name, @RequestParam("intro") String intro){
+        SessionMember sessionMember = (SessionMember) httpSession.getAttribute("member");
+        sessionMember.setName(name);
+        sessionMember.setIntro(intro);
+        memberService.updateInfo(sessionMember);
+        return new ModelAndView("redirect:/member/info");
+    }
 }
