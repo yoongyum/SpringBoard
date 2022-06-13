@@ -26,10 +26,22 @@ public class OAuthAttributes {
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes){
         // 여기서 네이버와 카카오 등 구분 (ofNaver, ofKakao)
         if("kakao".equals(registrationId)){
-
+            return ofKaKao("id",attributes);
         }
 
-        return ofKaKao("id",attributes);
+        //구글 로그인
+        return ofGoogle(userNameAttributeName, attributes);
+    }
+
+    //구글 데이터 받아오기
+    private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
+        return OAuthAttributes.builder()
+                .name((String) attributes.get("name"))
+                .email((String) attributes.get("email"))
+                .picture((String) attributes.get("picture"))
+                .attributes(attributes)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
     }
     
     //카카오 데이터 받아오기

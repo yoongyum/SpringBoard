@@ -36,10 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .csrf().disable()
+                .httpBasic().disable()
                 .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests()//URL별 권한 관리
-                    .antMatchers("/","/index","/board/view**").permitAll()
+                    .antMatchers("/","/index","/board/view**","/member/insertMember/**").permitAll()
                     .antMatchers("/api/v1/**").hasRole(Role.USER.name())
 //                    .anyRequest().authenticated()   //anyRequest : 설정된 값들 이외 나머지 URL 나타냄, authenticated : 인증된 사용자
 
