@@ -12,21 +12,21 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
-//    private final LoginService loginService;
-//
-//    @Autowired
-//    public LoginController(LoginService loginService) {
-//        this.loginService = loginService;
-//    }
-//
-//
-//    @PostMapping("/login")
-//    public ModelAndView login(LoginForm loginForm, Model model){
-//        MemberDto memberDto = null;
-//        if(loginService.checkMember(loginForm)){
-//            memberDto = loginService.getMember(loginForm.getEmail());
-//        }
-//        model.addAttribute("member",memberDto);
-//        return new ModelAndView("redirect:/");
-//    }
+    private final LoginService loginService;
+
+    @Autowired
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
+
+
+    @PostMapping("/login")
+    public ModelAndView login(LoginForm loginForm, Model model){
+        MemberDto memberDto = null;
+        if(loginService.checkMember(loginForm)){
+            memberDto = loginService.getMember(loginForm.getEmail());
+        }
+        model.addAttribute("member",memberDto);
+        return new ModelAndView("redirect:/");
+    }
 }

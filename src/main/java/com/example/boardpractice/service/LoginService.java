@@ -15,37 +15,37 @@ import java.util.Optional;
 public class LoginService {
     private MemberRepository memberRepository;
 
-//    @Autowired
-//    public LoginService(MemberRepository memberRepository){
-//        this.memberRepository = memberRepository;
-//    }
-//    /*
-//        로그인 체크
-//    */
-//    public boolean checkMember(LoginForm loginForm){
-//        Optional<Member> res = memberRepository.findByEmail(loginForm.getEmail());
-//
-//        //이메일에 따른 사용자 추출성공 후 사용자 비밀번호 일치 확인
-//        if(res.isPresent() && res.get().getPassword().equals(loginForm.getPassword())){
-//            return true;
-//        }
-//        return false;
-//    }
-//    /*
-//        로그인 정보 가져옴
-//    */
-//    public MemberDto getMember(String email){
-//        Member member = memberRepository.findByEmail(email).get();
-//
-//        return new MemberDto().builder()
-//                .seq(member.getSeq())
-//                .email(member.getEmail())
-//                .password(member.getPassword())
-//                .name(member.getName())
-//                .role(member.getRole())
-//                .intro(member.getIntro())
-//                .createDate(member.getCreateDate())
-//                .build();
-//    }
+    @Autowired
+    public LoginService(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
+    }
+    /*
+        로그인 체크
+    */
+    public boolean checkMember(LoginForm loginForm){
+        Optional<Member> res = memberRepository.findByEmail(loginForm.getEmail());
+
+        //이메일에 따른 사용자 추출성공 후 사용자 비밀번호 일치 확인
+        if(res.isPresent() && res.get().getPassword().equals(loginForm.getPassword())){
+            return true;
+        }
+        return false;
+    }
+    /*
+        로그인 정보 가져옴
+    */
+    public MemberDto getMember(String email){
+        Member member = memberRepository.findByEmail(email).get();
+
+        return new MemberDto().builder()
+                .seq(member.getSeq())
+                .email(member.getEmail())
+                .password(member.getPassword())
+                .name(member.getName())
+                .role(member.getRole())
+                .intro(member.getIntro())
+                .createDate(member.getCreateDate())
+                .build();
+    }
 
 }

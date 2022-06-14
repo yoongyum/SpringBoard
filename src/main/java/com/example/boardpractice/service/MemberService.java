@@ -16,7 +16,7 @@ import java.util.Map;
 @Transactional
 @Service
 public class MemberService {
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     @Autowired
     public MemberService(MemberRepository memberRepository){
@@ -26,24 +26,26 @@ public class MemberService {
     /*
             회원가입
     */
-//    public Member insertMember(MemberDto memberDto){
+//    public Member insertMember(SessionMember memberDto){
+//        memberDto.setPicture("/asset/img/defaultPicture.png");//기본이미지 설정
 //        return memberRepository.save(Member
 //                .builder(memberDto)
 //                .build());
 //    }
+//
+//    //회원가입 유효성 체크
+//    public Map<String, String> validationHandler(Errors errors){
+//        Map<String, String> validator = new HashMap<>();
+//
+//        for(FieldError error: errors.getFieldErrors()){
+//            //key = valid_{Dto 필드명}
+//            String key = String.format("valid_%s", error.getField());
+//            validator.put(key, error.getDefaultMessage());
+//        }
+//        return validator;
+//    }
 
-    //회원가입 유효성 체크
-    public Map<String, String> validationHandler(Errors errors){
-        Map<String, String> validator = new HashMap<>();
-
-        for(FieldError error: errors.getFieldErrors()){
-            //key = valid_{Dto 필드명}
-            String key = String.format("valid_%s", error.getField());
-            validator.put(key, error.getDefaultMessage());
-        }
-        return validator;
-    }
-
+    //유저 정보 수정
     public Member updateInfo(SessionMember sessionMember){
         Member member = memberRepository.findByEmail(sessionMember.getEmail())
                 .map(entity -> entity.updateInfo(sessionMember.getName(), sessionMember.getIntro()))
