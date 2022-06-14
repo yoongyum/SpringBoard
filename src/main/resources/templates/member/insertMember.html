@@ -7,16 +7,14 @@
         font-size: small;
     }
 </style>
+<!--header-->
+<th:block th:replace="commonFragment/header :: headerFragment"/>
 <body class="bg-dark text-light">
 <center>
-<div class="container">
+<div class="container py-5">
     <main>
-        <div class="py-5 text-center">
-            <h2>Register</h2>
-            <p class="lead">회원가입 해보시지 👍</p>
-        </div>
         <div class="col-4 text-start">
-            <form action="/member" method="post">
+            <form action="/member/insertMember/register" method="post">
                 <div class="row g-4">
                     <div class="col-12">
                         <label for="email" class="form-label">Email</label>
@@ -25,13 +23,13 @@
                         <div style="opacity: 0; font-size: small" th:if="${valid_email}==null" th:text="emailerror"/>
                     </div>
                     <div class="col-12">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">비밀번호</label>
                         <input type="password" name="password" id="password" class="form-control" placeholder="password">
                         <div class="validation-error" th:if="${valid_password}!=null" th:text="${valid_password}"/>
                         <div style="opacity: 0; font-size: small" th:if="${valid_password}==null" th:text="passworderror"/>
                     </div>
                     <div class="col-sm-6">
-                        <label for="name" class="form-label">NickName</label>
+                        <label for="name" class="form-label">닉네임</label>
                         <input type="text" name="name" id="name"  th:value="${memberDto.getName()}" class="form-control" placeholder="nickname">
                         <div class="validation-error" th:if="${valid_name}!=null" th:text="${valid_name}"/>
                         <div style="opacity: 0; font-size: small" th:if="${valid_name}==null" th:text="nameerror"/>
@@ -60,7 +58,7 @@
                         </select>
                     </div>
                     <div class="col-12">
-                        <label for="intro" class="form-label">😁 Self-introduction</label>
+                        <label for="intro" class="form-label">😁 간단한 자기소개</label>
                         <textarea name="intro" id="intro" class="form-control" th:text="${memberDto.getIntro()}" placeholder="간단한 자기소개를 써주세요. ^^"></textarea>
                     </div>
                 </div>
