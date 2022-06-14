@@ -21,8 +21,9 @@ public class Board {
 
     private String title;
 
-    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
-    private Member author;  //글쓴이 유저
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "member_id")
+    private Member member;  //글쓴이 유저
 
     private String content; //글 내용
 
@@ -38,7 +39,7 @@ public class Board {
     public static BoardBuilder builder(BoardDto boardDto){
         return BoardBuilder()
                 .title(boardDto.getTitle())
-                .author(boardDto.getAuthor())
+                .member(boardDto.getMember())
                 .content(boardDto.getContent())
                 .createDate(LocalDateTime.now());
     }

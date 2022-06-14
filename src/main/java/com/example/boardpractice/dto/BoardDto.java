@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class BoardDto {
     private Long seq;
     private String title;
-    private Member author;
+    private Member member;
     private String content;
     private LocalDateTime createDate;
     private LocalDateTime modifiedDate;

@@ -33,10 +33,11 @@ public class BoardService {
     public Board addPost(BoardDto boardDto, HttpSession session){
         SessionMember member = (SessionMember) session.getAttribute("member");
         Member m = memberRepository.findByEmail(member.getEmail()).get();
-        boardDto.setAuthor(m);
-        return boardRepository.save(Board
-                .builder(boardDto)
-                .build());
+        boardDto.setMember(m);
+        Board b = Board.builder(boardDto).build();
+//        m.getBoardList().add(b);
+//        memberRepository.save(m);
+        return boardRepository.save(b);
     }
     /*
         전체 게시글 리스트 조회
@@ -48,7 +49,7 @@ public class BoardService {
             boardDtoList.add(new BoardDto().builder()
                             .seq(board.getSeq())
                             .title(board.getTitle())
-                            .author(board.getAuthor())
+                            .member(board.getMember())
                             .createDate(board.getCreateDate())
                             .modifiedDate(board.getModifiedDate())
                             .views(board.getViews())
@@ -65,7 +66,7 @@ public class BoardService {
         return new BoardDto().builder()
                 .seq(board.getSeq())
                 .title(board.getTitle())
-                .author(board.getAuthor())
+                .member(board.getMember())
                 .content(board.getContent())
                 .createDate(board.getCreateDate())
                 .modifiedDate(board.getModifiedDate())
