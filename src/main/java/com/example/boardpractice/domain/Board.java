@@ -22,7 +22,6 @@ public class Board {
     private String title;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "member_id")
     private Member member;  //글쓴이 유저
 
     private String content; //글 내용
@@ -46,5 +45,9 @@ public class Board {
 
     public void increaseViews(){
         this.views++;
+    }
+
+    public void setMember(Member member){
+        this.member = member;
     }
 }
