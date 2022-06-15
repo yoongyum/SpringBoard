@@ -26,26 +26,26 @@ import java.util.Map;
 public class MemberController {
 
     private final MemberService memberService;
-    private final CheckMemberEmailValidator checkMemberEmailValidator;
-    private final CheckMemberNameValidator checkMemberNameValidator;
+//    private final CheckMemberEmailValidator checkMemberEmailValidator;
+//    private final CheckMemberNameValidator checkMemberNameValidator;
     private final HttpSession httpSession;
 
-    @InitBinder
-    public void validatorBinder(WebDataBinder binder){
-        binder.addValidators(checkMemberEmailValidator);
-        binder.addValidators(checkMemberNameValidator);
-    }
+//    @InitBinder
+//    public void validatorBinder(WebDataBinder binder){
+//        binder.addValidators(checkMemberEmailValidator);
+//        binder.addValidators(checkMemberNameValidator);
+//    }
 
-    @GetMapping("/member/insertMember")
-    public ModelAndView create(@Valid MemberDto memberDto, Errors errors ,Model model) {
-        model.addAttribute("memberDto", memberDto);
-        return new ModelAndView("/member/insertMember");
-    }
-//
-//
-//    //회원가입
-//    @PostMapping("/member")
-//    public ModelAndView insertMember(@Valid MemberDto memberDto, Errors errors, Model model) {
+//    @GetMapping("/member/insertMember")
+//    public ModelAndView create(@Valid SessionMember memberDto, Errors errors ,Model model) {
+//        model.addAttribute("memberDto", memberDto);
+//        return new ModelAndView("/member/insertMember");
+//    }
+
+
+    //회원가입
+//    @PostMapping("/member/insertMember/register")
+//    public ModelAndView insertMember(@Valid SessionMember memberDto, Errors errors, Model model) {
 //        if (errors.hasErrors()) {
 //            //회원가입 실패 시 입력 데이터값을 유지
 //            model.addAttribute("memberDto", memberDto);
@@ -60,11 +60,12 @@ public class MemberController {
 //            return new ModelAndView("/member/insertMember");
 //        }
 //
-//        //회원가입 유효성 통과시
+//        System.out.println("회원가입 성공!!");
 //        memberService.insertMember(memberDto);
-//        return new ModelAndView("redirect:");
+//        return new ModelAndView("redirect:/");
 //    }
 
+    //회원 상세정보
     @GetMapping("/member/info")
     public ModelAndView goInfo(Model model){
         SessionMember sessionMember = (SessionMember) httpSession.getAttribute("member");
@@ -72,6 +73,7 @@ public class MemberController {
         return new ModelAndView("/member/info");
     }
 
+    //회원 수정
     @PostMapping("/member/edit")
     public ModelAndView doEdit(@RequestParam("name") String name, @RequestParam("intro") String intro){
         SessionMember sessionMember = (SessionMember) httpSession.getAttribute("member");
@@ -80,4 +82,7 @@ public class MemberController {
         memberService.updateInfo(sessionMember);
         return new ModelAndView("redirect:/member/info");
     }
+
+    //회원 탈퇴
+
 }
