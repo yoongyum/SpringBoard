@@ -53,4 +53,11 @@ public class MemberService {
 
         return memberRepository.save(member);
     }
+
+    public void deleteMember(SessionMember sessionMember){
+        Member member = memberRepository.findByEmail(sessionMember.getEmail()).orElse(null);
+
+        assert member != null;
+        memberRepository.delete(member);
+    }
 }

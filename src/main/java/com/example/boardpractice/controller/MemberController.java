@@ -84,5 +84,12 @@ public class MemberController {
     }
 
     //회원 탈퇴
+    @GetMapping("/member/delete")
+    public ModelAndView doDelete(){
+        SessionMember sessionMember = (SessionMember) httpSession.getAttribute("member");
+//        memberService.deleteMember(sessionMember);
+        //회원 탈퇴시 자동으로 로그아웃
+        return new ModelAndView("redirect:/logout");
+    }
 
 }
