@@ -13,13 +13,6 @@ spring:
   thymeleaf:
     cache: false
 
-  #DB setting
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/yoongyum?autoReconnect=true
-    username: root
-    password: 1234
-
   jpa:
     show-sql: true #if true, Show DB processing
     hibernate:
