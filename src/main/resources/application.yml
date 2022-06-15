@@ -3,7 +3,8 @@ server:
 
 spring:
   profiles:
-    include: oauth
+    include: oauth, mysql
+
   devtools:
     livereload:
       enabled: true
