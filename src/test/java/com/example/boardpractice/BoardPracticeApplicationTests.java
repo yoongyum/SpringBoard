@@ -1,7 +1,10 @@
 package com.example.boardpractice;
 
+import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.domain.Board;
 import com.example.boardpractice.domain.Member;
+import com.example.boardpractice.domain.Role;
+import com.example.boardpractice.dto.BoardDto;
 import com.example.boardpractice.repository.BoardRepository;
 import com.example.boardpractice.repository.MemberRepository;
 import com.example.boardpractice.service.BoardService;
@@ -15,16 +18,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-//@Transactional
+@Transactional
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
 class BoardPracticeApplicationTests {
 
     @Autowired
     MemberRepository memberRepository;
+
+    @Autowired
+    BoardRepository boardRepository;
 
     @Autowired
     BoardService boardService;
@@ -52,15 +59,43 @@ class BoardPracticeApplicationTests {
         });
     }
 
-    @Test
+//    @Test
     public void getBoard(){
         System.out.println(boardService.getBoard(31L).toString());
     }
 
     // 게시글 삭제
-    @Test
+//    @Test
     @Transactional
     public void deleteBoard(){
         boardService.deleteBoard(41L);
+    }
+
+    @Test
+    public void cascadeTest(){
+        SessionMember sessionMember = new SessionMember();
+        sessionMember.setName("test1");
+        sessionMember.setEmail("test@email.com");
+        sessionMember.setRole(Role.USER);
+        Member member1 = Member.builder(sessionMember).build();
+        BoardDto boardDto1 = new BoardDto();
+        boardDto1.setTitle("아무글");
+
+        BoardDto boardDto2 = new BoardDto();
+        boardDto2.setTitle("아무글2");
+
+        Board board1 = Board.builder(boardDto1).build();
+        Board board2 = Board.builder(boardDto2).build();
+
+        member1.addBoard(board1);
+        member1.addBoard(board2);
+
+        memberRepository.save(member1);
+        memberRepository.delete(member1);
+
+        List<Board> boards = boardRepository.findAll();
+        for (Board board : boards) {
+            System.out.println(board.getSeq());
+        }
     }
 }
