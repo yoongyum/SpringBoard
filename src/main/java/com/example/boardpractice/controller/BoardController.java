@@ -74,10 +74,8 @@ public class BoardController {
     public void checkSessionMember(Model model){
         SessionMember member = (SessionMember) httpSession.getAttribute("member");
         if(member != null){
-            System.out.println("로그인 중인 멤버 발견 성공!");
             model.addAttribute("member", member);
         }else{
-            System.out.println("로그인 중인 멤버 발견 실패");
             model.addAttribute("member",null);
         }
     }
