@@ -30,14 +30,18 @@ public class BoardService {
     /*
         게시글 추가
     */
-    public Board addPost(BoardDto boardDto, HttpSession session){
+    public void addPost(BoardDto boardDto, HttpSession session){
         SessionMember member = (SessionMember) session.getAttribute("member");
         Member m = memberRepository.findByEmail(member.getEmail()).get();
-        boardDto.setMember(m);
         Board b = Board.builder(boardDto).build();
-//        m.getBoardList().add(b);
-//        memberRepository.save(m);
-        return boardRepository.save(b);
+        m.addBoard(b);
+        session.setAttribute("member", new SessionMember(m));
+
+        member = (SessionMember) session.getAttribute("member");
+        for (var bb : member.getBoards()) {
+            System.out.println(bb.getTitle());
+        }
+        memberRepository.save(m);
     }
     /*
         전체 게시글 리스트 조회
