@@ -8,6 +8,8 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Builder(builderMethodName = "MemberBuilder")
@@ -46,7 +48,11 @@ public class Member {
     @Column(updatable = false)
     private LocalDateTime createDate; //생성 날짜
 
-//                .createDate(LocalDateTime.now());
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Board> boards = new ArrayList<>();
+
+
+//.createDate(LocalDateTime.now());
 
     public static MemberBuilder builder(SessionMember sessionMember){
         return MemberBuilder()
@@ -54,6 +60,7 @@ public class Member {
                 .email(sessionMember.getEmail())
                 .age(sessionMember.getAge())
                 .picture(sessionMember.getPicture())
+                .boards(sessionMember.getBoards())
                 .intro(sessionMember.getIntro())
                 .role(Role.USER);
     }
@@ -64,6 +71,13 @@ public class Member {
         this.intro = intro;
         return this;
     }
+
+    //게시글 추가
+    public void addBoard(Board board){
+        this.boards.add(board);
+        board.setMember(this);
+    }
+
     public String getRoleKey(){
         return this.role.getKey();
     }
