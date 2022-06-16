@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="modalContainerFragment">
+    <div class="modal-view" id="viewModalContainer" onclick="disappearModal()">
+        <div class="modal-content">
+            진짜로 회원 탈퇴하실껀가요??
+            <div>
+                <button class="btn btn-danger" type="button" onclick="location.href = '/'">ㅇㅇ</button>
+                <button class="btn btn-primary" type="button" onclick="disappearModal()">ㄴㄴ</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/modal.js}"></script>
+</th:block>
+</html>

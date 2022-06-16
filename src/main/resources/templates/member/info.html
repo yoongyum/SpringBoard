@@ -30,10 +30,13 @@
     <br>
     <hr>
     <div class="row g-2">
-        <div style="font-size: 20px; font-weight: bold">회원 탈퇴</div>
+<!--        <div class="col-2" style="font-size: 20px; font-weight: bold">회원 탈퇴</div>-->
+        <button class="col-2 w-40 btn btn-sm btn-success" type="button" onclick="delete_member()">회원 탈퇴
+        </button>
         <span>탈퇴 시 작성하신 포스트 및 댓글이 모두 삭제됩니다.</span>
     </div>
 </div>
-<script type="text/javascript" th:src="@{/js/editInfo.js}"></script>
+<th:block th:replace="/commonFragment/modal/modalContainer :: modalContainerFragment"/>
+<script type="text/javascript" th:src="@{/js/info.js}"></script>
 </body>
 </html>
