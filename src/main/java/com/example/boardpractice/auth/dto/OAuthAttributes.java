@@ -5,6 +5,7 @@ import com.example.boardpractice.domain.Role;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Getter
@@ -66,6 +67,7 @@ public class OAuthAttributes {
                 .email(email)
                 .picture(picture)
                 .role(Role.USER) // 기본 권한
+                .createDate(LocalDateTime.now())
                 .build();
     }
 
