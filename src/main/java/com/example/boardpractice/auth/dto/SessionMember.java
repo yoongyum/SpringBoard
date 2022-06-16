@@ -42,16 +42,12 @@ public class SessionMember implements Serializable {
     private String age;
     private LocalDateTime createDate;
 
-    //게시글 리스트
-    private List<Board> boards = new ArrayList<>();
-
     //member Entity를 파라미터로 갖는 세션멤버 DTO생성자
     public SessionMember(Member member) {
         this.name = member.getName();
         this.email = member.getEmail();
         this.picture = member.getPicture();
         this.intro = member.getIntro();
-        this.boards = member.getBoards();
         this.role = member.getRole();
     }
 }
