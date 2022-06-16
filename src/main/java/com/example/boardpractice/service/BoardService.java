@@ -38,9 +38,7 @@ public class BoardService {
         session.setAttribute("member", new SessionMember(m));
 
         member = (SessionMember) session.getAttribute("member");
-        for (var bb : member.getBoards()) {
-            System.out.println(bb.getTitle());
-        }
+
         memberRepository.save(m);
     }
     /*
@@ -83,8 +81,6 @@ public class BoardService {
     */
     public void deleteBoard(Long seq){
         Optional<Board> res = boardRepository.findBySeq(seq);
-        res.ifPresent(board -> {
-            boardRepository.delete(board);
-        });
+        res.ifPresent(boardRepository::delete);
     }
 }
