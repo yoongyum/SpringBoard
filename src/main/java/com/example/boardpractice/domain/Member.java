@@ -60,8 +60,8 @@ public class Member {
                 .email(sessionMember.getEmail())
                 .age(sessionMember.getAge())
                 .picture(sessionMember.getPicture())
-                .boards(sessionMember.getBoards())
                 .intro(sessionMember.getIntro())
+                .createDate(LocalDateTime.now())
                 .role(Role.USER);
     }
 
