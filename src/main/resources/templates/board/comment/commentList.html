@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="commentListFragment">
+    <!--댓글 리스트-->
+    <div class="comment-list" th:each="comment : ${selectedBoard.comments}">
+        <span>
+            <img class="comment-profImg my-2" th:src="${comment.member.picture}" alt="Profile"/>
+        </span>
+        <span class="mx-2" style="font-size: large;" th:text="${comment.member.name}"></span>
+        <div style="font-size: small; color: gray" th:text="${#temporals.format(comment.createDate,'yyyy년 MM월 dd일 HH:mm')}"></div>
+        <div class="my-2" style="white-space: pre" th:text="${comment.content}"></div>
+        <hr>
+    </div>
+</th:block>
+</html>
