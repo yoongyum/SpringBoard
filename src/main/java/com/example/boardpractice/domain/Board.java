@@ -25,7 +25,7 @@ public class Board {
     @ManyToOne(optional = false)
     private Member member;  //글쓴이 유저
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @OrderBy("seq asc")
     private List<Comment> comments = new ArrayList<>();//댓글
 
