@@ -22,7 +22,7 @@ public class BoardDto {
     private Member member;
     private List<Comment> comments = new ArrayList<>();
     private String content;
-    private LocalDateTime createDate;
+    private LocalDateTime createDate = LocalDateTime.now();
     private LocalDateTime modifiedDate;
     private int views;
 }
