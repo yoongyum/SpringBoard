@@ -54,4 +54,11 @@ public class Board {
     public void setMember(Member member){
         this.member = member;
     }
+
+    //댓글 추가
+    public void addComment(Comment comment){
+        if(this.comments == null) comments = new ArrayList<>();
+        this.comments.add(comment);
+        comment.setBoard(this);
+    }
 }
