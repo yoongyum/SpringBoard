@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="commentContainerFragment">
+    <!--댓글 입력 폼-->
+    <th:block th:replace="/board/comment/insertComment :: insertCommentFragment"></th:block>
+
+    <!--댓글 리스트-->
+    <th:block th:replace="/board/comment/commentList :: commentListFragment"></th:block>
+</th:block>
+</html>
