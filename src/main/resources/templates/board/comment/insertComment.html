@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="insertCommentFragment">
+    <div class="comment-container my-4">
+        <div class="my-2 px-2" th:text="${#lists.size(selectedBoard.comments)}+'개의 댓글'"></div>
+        <form th:action="@{/comment(seq=${selectedBoard.seq})}" method="post">
+            <div>
+                <textarea class="comment-textarea my-2" id="comment-content" onkeyup="resize(this)" type="text" name="content" placeholder="댓글을 작성하세요"></textarea>
+            </div>
+            <div style="display: flex; justify-content: flex-end">
+                <button class="btn btn-primary my-1"  style="align-self: flex-end" type="submit">댓글 작성</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function resize(obj){
+            obj.style.height = "1px";
+            obj.style.height = (16 + obj.scrollHeight)+"px";
+        }
+    </script>
+</th:block>
+</html>
