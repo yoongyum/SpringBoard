@@ -24,6 +24,10 @@ public class Board {
     @ManyToOne(optional = false)
     private Member member;  //글쓴이 유저
 
+    @OneToMany(mappedBy = "board")
+    @OrderBy("seq asc")
+    private List<Comment> comments = new ArrayList<>();//댓글
+
     private String content; //글 내용
 
     @CreatedDate
