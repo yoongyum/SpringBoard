@@ -14,7 +14,7 @@
                 <span th:text="${#temporals.format(selectedBoard.createDate,'yyyy/MM/dd HH:mm')}"></span>
             </div>
             <div class="col d-flex justify-content-end">
-                <a class="viewing-btn" >글 목록</a>
+                <a class="viewing-btn" href="/">글 목록</a>
                 <a class="viewing-btn" th:href="@{/board/view/update(seq=${selectedBoard.seq})}" th:text="수정"></a>
                 <a class="viewing-btn" th:href="@{/board/view/delete(seq=${selectedBoard.seq})}" th:text="삭제"></a>
             </div>
