@@ -51,8 +51,9 @@ public class Member {
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Board> boards = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
 
-//.createDate(LocalDateTime.now());
 
     public static MemberBuilder builder(SessionMember sessionMember){
         return MemberBuilder()
@@ -74,8 +75,17 @@ public class Member {
 
     //게시글 추가
     public void addBoard(Board board){
+        if(this.boards == null) boards = new ArrayList<>();
         this.boards.add(board);
         board.setMember(this);
+    }
+
+    //댓글 추가
+    public void addComment(Comment comment, Board board){
+        if(this.comments == null) comments = new ArrayList<>();
+        this.comments.add(comment);
+        board.addComment(comment);
+        comment.setMember(this);
     }
 
     public String getRoleKey(){
