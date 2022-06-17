@@ -39,7 +39,7 @@ public class BoardService {
 
         member = (SessionMember) session.getAttribute("member");
 
-        memberRepository.save(m);
+        boardRepository.save(b);
     }
     /*
         전체 게시글 리스트 조회
@@ -69,6 +69,7 @@ public class BoardService {
                 .seq(board.getSeq())
                 .title(board.getTitle())
                 .member(board.getMember())
+                .comments(board.getComments())
                 .content(board.getContent())
                 .createDate(board.getCreateDate())
                 .modifiedDate(board.getModifiedDate())
