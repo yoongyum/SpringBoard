@@ -1,12 +1,13 @@
 package com.example.boardpractice.domain;
 
-import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.dto.BoardDto;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Builder(builderMethodName = "BoardBuilder")
