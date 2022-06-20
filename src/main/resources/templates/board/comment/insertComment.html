@@ -14,8 +14,11 @@
     </div>
     <script>
         function resize(obj){
-            obj.style.height = "1px";
-            obj.style.height = (16 + obj.scrollHeight)+"px";
+            // const hei = window.getComputedStyle(obj).height
+            if (obj.scrollHeight >= 90){
+                obj.style.height = "0px";
+                obj.style.height = (16 + obj.scrollHeight) + "px";
+            }
         }
     </script>
 </th:block>
