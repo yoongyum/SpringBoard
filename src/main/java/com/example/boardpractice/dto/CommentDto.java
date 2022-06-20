@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Builder
@@ -12,6 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class CommentDto {
+
+    @NotBlank(message = "댓글에 아무 내용이 없습니다.")
     String content;
     private LocalDateTime createDate = LocalDateTime.now();
     private LocalDateTime modifiedDate;
