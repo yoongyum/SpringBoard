@@ -7,6 +7,7 @@ import com.example.boardpractice.dto.CommentDto;
 import com.example.boardpractice.repository.BoardRepository;
 import com.example.boardpractice.repository.CommentRepository;
 import com.example.boardpractice.repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import org.springframework.validation.FieldError;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Transactional
 @Service
 public class CommentService {
@@ -54,5 +56,13 @@ public class CommentService {
             validator.put(key,error.getDefaultMessage());
         }
         return validator;
+    }
+
+    public long removeComment(Long seq) {
+        Comment comment = commentRepository.findById(seq).orElse(null);
+        log.info("지울 댓글 : {}",comment.getContent());
+        long boardSeq = comment.getBoard().getSeq();
+        commentRepository.deleteBySeq(seq);
+        return boardSeq;
     }
 }

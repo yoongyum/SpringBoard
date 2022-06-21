@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -42,6 +44,14 @@ public class CommentController {
         commentService.addComment(seq,sessionMember,commentDto);
 
         return "redirect:/board/view?seq="+seq;
+    }
+
+    //댓글 삭제
+    @GetMapping("comment/delete{seq}")
+    public ModelAndView deleteComment(Long seq){
+        System.out.println(seq);
+        long boardSeq = commentService.removeComment(seq);
+        return new ModelAndView("redirect:/board/view?seq="+boardSeq);
     }
 
 }
