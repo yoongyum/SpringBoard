@@ -7,7 +7,17 @@
             <img class="comment-profImg my-2" th:src="${comment.member.picture}" alt="Profile"/>
         </span>
         <span class="mx-2" style="font-size: large;" th:text="${comment.member.name}"></span>
-        <div style="font-size: small; color: gray" th:text="${#temporals.format(comment.createDate,'yyyy년 MM월 dd일 HH:mm')}"></div>
+
+        <div  style="display: flex; justify-content: space-between;">
+            <div class="mb-3" style="font-size: small; color: gray" th:text="${#temporals.format(comment.createDate,'yyyy년 MM월 dd일 HH:mm')}"></div>
+
+            <div class="px-2" style="display: flex; justify-content: space-between;font-size: small">
+
+                <a class="viewing-btn mx-1" th:href="@{/comment/delete(seq=${comment.seq})}" th:text="삭제"></a>
+                <a class="viewing-btn mx-1" th:href="@{/comment/update}" th:text="수정"></a>
+                <a class="viewing-btn mx-1">답글</a>
+            </div>
+        </div>
         <div class="my-2" style="white-space: pre" th:text="${comment.content}"></div>
         <hr>
     </div>
