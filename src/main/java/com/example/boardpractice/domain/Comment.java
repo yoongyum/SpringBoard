@@ -46,4 +46,9 @@ public class Comment {
                 .content(dto.getContent())
                 .createDate(dto.getCreateDate());
     }
+
+    //내용 수정
+    public void editContent(String content) {
+        this.content = content;
+    }
 }
