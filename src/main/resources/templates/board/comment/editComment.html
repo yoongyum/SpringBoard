@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="commentEditFragment">
+    <!--댓글 수정-->
+    <div id="comment-edit">
+        <div style="display: flex; justify-content: space-between;">
+            <div class="mb-3" style="font-size: small; color: gray"
+                 th:text="${#temporals.format(comment.createDate,'yyyy년 MM월 dd일 HH:mm')}"></div>
+
+            <div class="px-2" style="display: flex; justify-content: space-between;font-size: small">
+                <a class="viewing-btn mx-1" th:attr="onclick=|cancel('${comment.seq}')|" th:text="취소"></a>
+            </div>
+        </div>
+        <form name="EditComment" th:action="@{/comment/update(seq=${comment.seq})}" method="post">
+            <div>
+                <textarea class="comment-textarea my-2" id="comment-EditContent" onkeyup="resize(this)" type="text"
+                          name="content" th:text="${comment.content}" placeholder="댓글을 작성하세요"></textarea>
+            </div>
+            <div style="display: flex; justify-content: flex-end">
+                <button class="btn btn-warning my-1" style="align-self: flex-end" type="button"
+                        onclick="checkForm('EditComment','comment-EditContent','errorEditComment')">댓글 수정
+                </button>
+            </div>
+        </form>
+        <div id="errorEditComment" style="font-size: small;color: yellow;display: none">댓글을 입력해주세요</div>
+    </div>
+</th:block>
+</html>
