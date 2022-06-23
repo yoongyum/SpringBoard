@@ -18,7 +18,7 @@
                th:attr="onclick=|edit('${comment.seq}')|" th:text="수정"></a>
 
             <!--답글 버튼-->
-            <a class="viewing-btn mx-1">답글</a>
+            <a class="viewing-btn mx-1" th:if="${member != null}" >답글</a>
         </div>
     </div>
     <div class="my-2" style="white-space: pre" th:text="${comment.content}"></div>
