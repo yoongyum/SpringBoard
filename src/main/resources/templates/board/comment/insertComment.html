@@ -8,30 +8,10 @@
                 <textarea class="comment-textarea my-2" id="comment-content" onkeyup="resize(this)" type="text" name="content" placeholder="댓글을 작성하세요"></textarea>
             </div>
             <div style="display: flex; justify-content: flex-end">
-                <button class="btn btn-primary my-1"  style="align-self: flex-end" type="button" onclick="checkForm()">댓글 작성</button>
+                <button class="btn btn-primary my-1"  style="align-self: flex-end" type="button" onclick="checkForm('CreateComment','comment-content','error')">댓글 작성</button>
             </div>
         </form>
-        <div id="error" style="color: yellow;display: none">댓글을 입력해주세요</div>
+        <div id="error" style="font-size: small;color: yellow;display: none">댓글을 입력해주세요</div>
     </div>
-    <script>
-        function resize(obj){
-            // const hei = window.getComputedStyle(obj).height
-            if (obj.scrollHeight >= 90){
-                obj.style.height = "0px";
-                obj.style.height = (16 + obj.scrollHeight) + "px";
-            }
-        }
-        function checkForm(){
-            const form = document.CreateComment;
-            const content = document.getElementById("comment-content");
-            if(content.value === ""){
-                const errorComment = document.getElementById("error");
-                errorComment.style.display = "block"
-                return false;
-            }else{
-                form.submit();
-            }
-        }
-    </script>
 </th:block>
 </html>
