@@ -3,23 +3,18 @@
 <th:block th:fragment="commentListFragment">
     <!--댓글 리스트-->
     <div class="comment-list" th:each="comment : ${selectedBoard.comments}">
-        <span>
-            <img class="comment-profImg my-2" th:src="${comment.member.picture}" alt="Profile"/>
-        </span>
+
+        <span><img class="comment-profImg my-2" th:src="${comment.member.picture}" alt="Profile"/></span>
         <span class="mx-2" style="font-size: large;" th:text="${comment.member.name}"></span>
 
-        <div  style="display: flex; justify-content: space-between;">
-            <div class="mb-3" style="font-size: small; color: gray" th:text="${#temporals.format(comment.createDate,'yyyy년 MM월 dd일 HH:mm')}"></div>
-
-            <div class="px-2" style="display: flex; justify-content: space-between;font-size: small">
-
-                <a class="viewing-btn mx-1" th:href="@{/comment/delete(seq=${comment.seq})}" th:text="삭제"></a>
-                <a class="viewing-btn mx-1" th:href="@{/comment/update}" th:text="수정"></a>
-                <a class="viewing-btn mx-1">답글</a>
-            </div>
+        <div th:id="'comment-view'+${comment.seq}">
+            <th:block th:replace="/board/comment/viewComment :: commentViewFragment"></th:block>
         </div>
-        <div class="my-2" style="white-space: pre" th:text="${comment.content}"></div>
+        <div th:id="'comment-edit'+${comment.seq}" style="display: none">
+            <th:block th:replace="/board/comment/editComment :: commentEditFragment"></th:block>
+        </div>
         <hr>
     </div>
+    <script type="text/javascript" th:src="@{/js/comment.js}"></script>
 </th:block>
 </html>
