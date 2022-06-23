@@ -10,11 +10,11 @@
 
             <!--삭제 버튼-->
             <a class="viewing-btn mx-1"
-               th:if="${comment.member.email} == ${member.email} or ${member.email} == ${selectedBoard.member.email}"
+               th:if="${member != null} and (${comment.member.email} == ${member.email} or ${member.email} == ${selectedBoard.member.email})"
                th:href="@{/comment/delete(seq=${comment.seq})}" th:text="삭제"></a>
 
             <!--수정 버튼-->
-            <a class="viewing-btn mx-1" th:if="${comment.member.email} == ${member.email}"
+            <a class="viewing-btn mx-1" th:if="${member != null} and (${comment.member.email} == ${member.email})"
                th:attr="onclick=|edit('${comment.seq}')|" th:text="수정"></a>
 
             <!--답글 버튼-->
