@@ -49,8 +49,14 @@ public class CommentController {
     //댓글 삭제
     @GetMapping("comment/delete{seq}")
     public ModelAndView deleteComment(Long seq){
-        System.out.println(seq);
         long boardSeq = commentService.removeComment(seq);
+        return new ModelAndView("redirect:/board/view?seq="+boardSeq);
+    }
+
+    //댓글 수정
+    @PostMapping("comment/update{seq}")
+    public ModelAndView updateComment(Long seq, String content){
+        long boardSeq = commentService.updateComment(seq, content);
         return new ModelAndView("redirect:/board/view?seq="+boardSeq);
     }
 

@@ -58,11 +58,23 @@ public class CommentService {
         return validator;
     }
 
+    //댓글 삭제
     public long removeComment(Long seq) {
         Comment comment = commentRepository.findById(seq).orElse(null);
-        log.info("지울 댓글 : {}",comment.getContent());
+        assert comment != null;
         long boardSeq = comment.getBoard().getSeq();
         commentRepository.deleteBySeq(seq);
         return boardSeq;
+    }
+
+    //댓글 수정
+    public long updateComment(Long seq, String content) {
+        Comment comment = commentRepository.findById(seq).orElse(null);
+        assert comment != null;
+        comment.editContent(content);
+        
+        //변경 내용 저장
+        commentRepository.save(comment);
+        return comment.getBoard().getSeq();
     }
 }
