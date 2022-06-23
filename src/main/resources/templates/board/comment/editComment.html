@@ -11,18 +11,18 @@
                 <a class="viewing-btn mx-1" th:attr="onclick=|cancel('${comment.seq}')|" th:text="취소"></a>
             </div>
         </div>
-        <form name="EditComment" th:action="@{/comment/update(seq=${comment.seq})}" method="post">
+        <form th:name="'EditComment'+${comment.seq}" th:action="@{/comment/update(seq=${comment.seq})}" method="post">
             <div>
-                <textarea class="comment-textarea my-2" id="comment-EditContent" onkeyup="resize(this)" type="text"
+                <textarea class="comment-textarea my-2" th:id="'comment-content'+${comment.seq}" onkeyup="resize(this)" type="text"
                           name="content" th:text="${comment.content}" placeholder="댓글을 작성하세요"></textarea>
             </div>
             <div style="display: flex; justify-content: flex-end">
-                <button class="btn btn-warning my-1" style="align-self: flex-end" type="button"
-                        onclick="checkForm('EditComment','comment-EditContent','errorEditComment')">댓글 수정
+                <div class="my-1 mx-2" th:id="'error'+${comment.seq}" style="font-size: small;color: yellow;display: none">빈칸은 댓글 등록이 안됩니다.</div>
+                <button class="btn btn-warning my-1 mx-2" style="align-self: flex-end" type="button"
+                        th:attr="onclick=|checkForm('EditComment${comment.seq}','comment-content${comment.seq}','error${comment.seq}')|">댓글 수정
                 </button>
             </div>
         </form>
-        <div id="errorEditComment" style="font-size: small;color: yellow;display: none">댓글을 입력해주세요</div>
     </div>
 </th:block>
 </html>
