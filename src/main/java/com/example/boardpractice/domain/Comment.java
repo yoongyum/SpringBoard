@@ -7,6 +7,8 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -23,11 +25,17 @@ public class Comment {
     @ManyToOne(optional = false)
     private Member member;//댓글 쓴사람
 
-
     @ManyToOne(optional = false)
     private Board board; //댓글 있는 게시판
     
     private String content;//댓글 내용
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_seq")
+    private Comment parent; //댓글의 부모
+
+    @OneToMany(mappedBy = "parent", orphanRemoval = true)
+    private List<Comment> chidren = new ArrayList<>();
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
