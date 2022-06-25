@@ -59,4 +59,9 @@ public class Comment {
     public void editContent(String content) {
         this.content = content;
     }
+
+    //대댓글 추가
+    public void addReply(Comment child) {
+        this.chidren.add(child);
+    }
 }
