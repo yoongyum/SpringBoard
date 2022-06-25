@@ -88,6 +88,13 @@ public class Member {
         comment.setMember(this);
     }
 
+    //대댓글 추가
+    public void addReply(Comment child, Comment parent){
+        this.comments.add(child);
+        child.setMember(this);
+        parent.addReply(child);
+    }
+
     public String getRoleKey(){
         return this.role.getKey();
     }
