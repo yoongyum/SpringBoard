@@ -35,7 +35,7 @@ public class Comment {
     private Comment parent; //댓글의 부모
 
     @OneToMany(mappedBy = "parent", orphanRemoval = true)
-    private List<Comment> chidren = new ArrayList<>();
+    private List<Comment> children = new ArrayList<>();
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
