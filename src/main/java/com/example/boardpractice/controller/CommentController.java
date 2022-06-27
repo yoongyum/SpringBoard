@@ -46,6 +46,14 @@ public class CommentController {
         return "redirect:/board/view?seq="+seq;
     }
 
+    //대댓글 생성
+    @PostMapping("comment/reply{seq}")
+    public ModelAndView replyComment(Long seq, @Valid CommentDto commentDto,HttpSession session){
+        SessionMember sessionMember = (SessionMember) session.getAttribute("member");
+        Long boardSeq = commentService.addReply(seq,sessionMember,commentDto);
+        return new ModelAndView("redirect:/board/view?seq="+boardSeq);
+    }
+
     //댓글 삭제
     @GetMapping("comment/delete{seq}")
     public ModelAndView deleteComment(Long seq){
