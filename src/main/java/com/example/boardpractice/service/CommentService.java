@@ -3,6 +3,7 @@ package com.example.boardpractice.service;
 import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.domain.Board;
 import com.example.boardpractice.domain.Comment;
+import com.example.boardpractice.domain.Member;
 import com.example.boardpractice.dto.CommentDto;
 import com.example.boardpractice.repository.BoardRepository;
 import com.example.boardpractice.repository.CommentRepository;
@@ -16,6 +17,7 @@ import org.springframework.validation.FieldError;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @Transactional
@@ -56,6 +58,19 @@ public class CommentService {
             validator.put(key,error.getDefaultMessage());
         }
         return validator;
+    }
+
+    //대댓글 생성
+    public Long addReply(Long seq, SessionMember sessionMember, CommentDto commentDto) {
+        Comment comment = Comment.builder(commentDto).build();
+
+        var member = memberRepository.findByEmail(sessionMember.getEmail()).orElse(null);
+        var parent = commentRepository.findById(seq).orElse(null);
+        assert member != null;
+        assert parent != null;
+        member.addReply(comment, parent);
+
+        return parent.getBoard().getSeq();
     }
 
     //댓글 삭제
