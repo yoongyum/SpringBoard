@@ -41,12 +41,6 @@ public class Comment {
     @Column(updatable = false, nullable = false)
     private LocalDateTime createDate;   //생성 날짜
 
-    public void setMember(Member member){
-        this.member = member;
-    }
-    public void setBoard(Board board){
-        this.board = board;
-    }
 
     //빌더
     public static CommentBuilder builder (CommentDto dto){
@@ -62,6 +56,24 @@ public class Comment {
 
     //대댓글 추가
     public void addReply(Comment child) {
-        this.chidren.add(child);
+        this.children.add(child);
+        child.setParent(this);
+    }
+
+    
+    //댓글 작성자 추가
+    public void setMember(Member member){
+        this.member = member;
+    }
+    
+    //댓글이 있는 게시글 추가
+    public void setBoard(Board board){
+        this.board = board;
+    }
+
+    //대댓글 parent와 게시글 등록
+    public void setParent(Comment parent){
+        this.parent = parent;
+        this.board = parent.getBoard();
     }
 }
