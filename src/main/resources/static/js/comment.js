@@ -31,3 +31,15 @@ function checkForm(frm,contentId, errorId) {
     }
     return false;
 }
+
+//대댓글 작성 뷰 보이기
+function CreateReplyView(seq){
+    const reply = document.getElementById("comment-reply"+seq);
+    if( reply.style.display === 'none'){
+        reply.style.display = 'block';
+    }else{
+        document.getElementById("reply-content"+seq).value = "";
+        document.getElementById("reply-error"+seq).style.display = 'none';
+        reply.style.display = 'none';
+    }
+}
