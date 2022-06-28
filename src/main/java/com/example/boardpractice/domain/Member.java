@@ -103,4 +103,8 @@ public class Member {
     public String getRoleKey(){
         return this.role.getKey();
     }
+
+    public void addLikes(Likes like) {
+        this.likes.add(like);
+    }
 }

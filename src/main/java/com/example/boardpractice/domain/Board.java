@@ -66,4 +66,8 @@ public class Board {
         this.comments.add(comment);
         comment.setBoard(this);
     }
+
+    public void addLikes(Likes like) {
+        this.likes.add(like);
+    }
 }
