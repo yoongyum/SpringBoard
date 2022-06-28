@@ -29,6 +29,10 @@ public class Board {
     @OrderBy("seq asc")
     private List<Comment> comments = new ArrayList<>();//댓글
 
+    @OneToMany(mappedBy = "board",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OrderBy("seq asc")
+    private List<Likes> likes = new ArrayList<>();//좋아요 수
+    
     private String content; //글 내용
 
     @CreatedDate

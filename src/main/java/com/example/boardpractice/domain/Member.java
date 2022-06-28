@@ -48,12 +48,17 @@ public class Member {
     @Column(updatable = false)
     private LocalDateTime createDate; //생성 날짜
 
+    //멤버가 생성한 게시글리스트
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Board> boards = new ArrayList<>();
-
+    
+    //멤버가 작성한 댓글리스트
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
+    //멤버가 좋아요리스트
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Likes> likes = new ArrayList<>();
 
     public static MemberBuilder builder(SessionMember sessionMember){
         return MemberBuilder()
