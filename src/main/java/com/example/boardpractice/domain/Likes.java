@@ -20,4 +20,10 @@ public class Likes {
     @JoinColumn(name = "member_seq")
     private Member member;  //좋아요 누른 멤버
 
+    public void setMemberAndBoard(Member member, Board board) {
+        this.member = member;
+        member.addLikes(this);
+        this.board = board;
+        board.addLikes(this);
+    }
 }
