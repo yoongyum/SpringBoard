@@ -35,6 +35,7 @@ public class Comment {
     private Comment parent; //댓글의 부모
 
     @OneToMany(mappedBy = "parent", orphanRemoval = true)
+    @OrderBy("seq asc")
     private List<Comment> children = new ArrayList<>();
 
     @CreatedDate
