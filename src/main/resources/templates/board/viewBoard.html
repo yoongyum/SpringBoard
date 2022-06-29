@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"></html>
 <th:block th:fragment="viewBoardFragment">
-    <div class="container text-light" >
+    <div class="container text-light">
         <div class="row">
             <div class="viewing-title" th:text="${selectedBoard.title}"></div>
             <hr>
@@ -20,12 +20,19 @@
             </div>
         </div>
         <div class="row mt-2 mb-5">
+            <!--조회수-->
             <i class="bi-eye-fill " th:text="' '+${selectedBoard.views}"></i>
+            <!--좋아요 수-->
+            <i class="bi bi-suit-heart-fill" style="color: #0a58ca" th:text="' '+${#lists.size(selectedBoard.likes)}"></i>
         </div>
         <div class="row pb-5 mb-5">
             <div class="viewing-content" th:text="${selectedBoard.content}"></div>
         </div>
-
+        <form th:action="@{/board/view/likes(seq=${selectedBoard.seq})}" method="post">
+            <button class="btn btn-dark">
+                <i class="bi bi-suit-heart"></i> 좋아요
+            </button>
+        </form>
         <!--댓글 영역-->
         <th:block th:replace="/board/comment/commentContainer :: commentContainerFragment"></th:block>
     </div>
