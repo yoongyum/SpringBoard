@@ -46,7 +46,7 @@ public class Comment {
     //빌더
     public static CommentBuilder builder (CommentDto dto){
         return CommentBuilder()
-                .content(dto.getContent())
+                .content(dto.getCommentContent())
                 .createDate(dto.getCreateDate());
     }
 

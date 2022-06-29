@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class CommentDto {
 
     @NotBlank(message = "댓글에 아무 내용이 없습니다.")
-    String content;
+    String commentContent;
     private LocalDateTime createDate = LocalDateTime.now();
     private LocalDateTime modifiedDate;
 }

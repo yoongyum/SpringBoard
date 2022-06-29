@@ -63,8 +63,8 @@ public class CommentController {
 
     //댓글 수정
     @PostMapping("comment/update{seq}")
-    public ModelAndView updateComment(Long seq, String content){
-        long boardSeq = commentService.updateComment(seq, content);
+    public ModelAndView updateComment(Long seq, String commentContent){
+        long boardSeq = commentService.updateComment(seq, commentContent);
         return new ModelAndView("redirect:/board/view?seq="+boardSeq);
     }
 

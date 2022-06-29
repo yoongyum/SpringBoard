@@ -5,7 +5,7 @@
         <div class="my-2 px-2" th:text="${#lists.size(selectedBoard.comments)}+'개의 댓글'"></div>
         <form name="CreateComment" th:action="@{/comment(seq=${selectedBoard.seq})}" method="post" >
             <div>
-                <textarea class="comment-textarea my-2" id="comment-content" onkeyup="resize(this)" type="text" name="content" placeholder="댓글을 작성하세요"></textarea>
+                <textarea class="comment-textarea my-2" id="comment-content" onkeyup="resize(this)" type="text" name="commentContent" placeholder="댓글을 작성하세요"></textarea>
             </div>
             <div style="display: flex; justify-content: flex-end">
                 <div class="my-1 mx-2" id="error" style="font-size: small;color: yellow;display: none">빈칸은 댓글 등록이 안됩니다.</div>
