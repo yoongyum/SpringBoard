@@ -2,6 +2,7 @@ package com.example.boardpractice.dto;
 
 import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.domain.Comment;
+import com.example.boardpractice.domain.Likes;
 import com.example.boardpractice.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ public class BoardDto {
     private String title;
     private Member member;
     private List<Comment> comments = new ArrayList<>();
+    private List<Likes> likes = new ArrayList<>();
     private String content;
     private LocalDateTime createDate = LocalDateTime.now();
     private LocalDateTime modifiedDate;
