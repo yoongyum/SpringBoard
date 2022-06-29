@@ -70,6 +70,14 @@ public class BoardController {
         return new ModelAndView("redirect:/");
     }
 
+    //좋아요
+    @PostMapping("board/view/likes{seq}")
+    public ModelAndView addLikes(Long seq){
+        SessionMember sessionMember = (SessionMember) httpSession.getAttribute("member");
+        boardService.addLikes(seq,sessionMember);
+        return new ModelAndView("redirect:/board/view?seq="+seq);
+    }
+
 
     public void checkSessionMember(Model model){
         SessionMember member = (SessionMember) httpSession.getAttribute("member");
