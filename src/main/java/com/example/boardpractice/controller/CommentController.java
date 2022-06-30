@@ -11,11 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
@@ -41,9 +43,18 @@ public class CommentController {
 //            }
 //            return "redirect:/board/view?seq="+seq;
 //        }
-        commentService.addComment(seq,sessionMember,commentDto);
+//        commentService.addComment(seq,sessionMember,commentDto);
 
         return "redirect:/board/view?seq="+seq;
+    }
+
+    @PostMapping("/comment")
+    @ResponseBody
+    public String addComment(CommentDto commentDto,HttpSession session){
+        SessionMember sessionMember = (SessionMember) session.getAttribute("member");
+        log.info("현재 회원 이메일: {}",sessionMember.getEmail());
+        commentService.addComment(sessionMember,commentDto);
+        return "commentList";
     }
 
     //대댓글 생성
