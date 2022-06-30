@@ -3,6 +3,7 @@ package com.example.boardpractice.controller;
 import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.dto.BoardDto;
 import com.example.boardpractice.dto.CommentDto;
+import com.example.boardpractice.service.BoardService;
 import com.example.boardpractice.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,6 +28,7 @@ import java.util.Map;
 public class CommentController {
 
     private final CommentService commentService;
+    private final BoardService boardService;
 
     //댓글 달기
     @PostMapping("/comment{seq}")
@@ -43,18 +46,19 @@ public class CommentController {
 //            }
 //            return "redirect:/board/view?seq="+seq;
 //        }
-//        commentService.addComment(seq,sessionMember,commentDto);
+        commentService.addComment(sessionMember,commentDto);
 
         return "redirect:/board/view?seq="+seq;
     }
 
     @PostMapping("/comment")
-    @ResponseBody
-    public String addComment(CommentDto commentDto,HttpSession session){
+    public String addComment(CommentDto commentDto, HttpSession session, Model model){
         SessionMember sessionMember = (SessionMember) session.getAttribute("member");
         log.info("현재 회원 이메일: {}",sessionMember.getEmail());
         commentService.addComment(sessionMember,commentDto);
-        return "commentList";
+        model.addAttribute("selectedBoard",boardService.getBoard(commentDto.getBoardSeq()));
+        model.addAttribute("member",sessionMember);
+        return "/board/comment/commentList :: #commentList";
     }
 
     //대댓글 생성
