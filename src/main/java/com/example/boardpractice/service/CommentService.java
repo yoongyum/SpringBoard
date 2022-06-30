@@ -4,6 +4,7 @@ import com.example.boardpractice.auth.dto.SessionMember;
 import com.example.boardpractice.domain.Board;
 import com.example.boardpractice.domain.Comment;
 import com.example.boardpractice.domain.Member;
+import com.example.boardpractice.dto.BoardDto;
 import com.example.boardpractice.dto.CommentDto;
 import com.example.boardpractice.repository.BoardRepository;
 import com.example.boardpractice.repository.CommentRepository;
@@ -36,16 +37,14 @@ public class CommentService {
     }
 
     //댓글 추가
-    public void addComment(Long seq, SessionMember sessionMember, CommentDto commentDto) {
+    public void addComment(SessionMember sessionMember, CommentDto commentDto) {
         Comment comment = Comment.builder(commentDto).build();
         var memberRes = memberRepository.findByEmail(sessionMember.getEmail());
-
         memberRes.ifPresent(member -> {
-            Board board =boardRepository.findBySeq(seq).orElse(null);
+            Board board = boardRepository.findBySeq(commentDto.getBoardSeq()).orElse(null);
             member.addComment(comment,board);
             commentRepository.save(comment);
         });
-
     }
 
     //댓글기능 유효성 체크
