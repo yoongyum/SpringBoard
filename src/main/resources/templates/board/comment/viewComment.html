@@ -24,9 +24,9 @@
     <!--댓글 내용-->
     <div class="my-2" style="white-space: pre" th:text="${comment.content}"></div>
 
-<!--    &lt;!&ndash;대댓글 뷰&ndash;&gt;-->
-<!--    <div th:id="'comment-reply'+${comment.seq}" style="display: none">-->
-<!--        <th:block th:replace="/board/comment/replyComment :: commentReplyFragment"></th:block>-->
-<!--    </div>-->
+    <!--대댓글 뷰-->
+    <div th:id="'comment-reply'+${comment.seq}" style="display: none">
+        <th:block th:replace="/board/comment/replyComment :: commentReplyFragment"></th:block>
+    </div>
 </th:block>
 </html>
