@@ -22,10 +22,12 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seq;   //고유 번호
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_seq")
     private Member member;//댓글 쓴사람
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_seq")
     private Board board; //댓글 있는 게시판
     
     private String content;//댓글 내용
@@ -47,6 +49,7 @@ public class Comment {
     public static CommentBuilder builder (CommentDto dto){
         return CommentBuilder()
                 .content(dto.getCommentContent())
+                .children(new ArrayList<>())
                 .createDate(dto.getCreateDate());
     }
 

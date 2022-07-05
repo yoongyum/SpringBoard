@@ -22,7 +22,8 @@ public class Board {
 
     private String title;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_seq")
     private Member member;  //글쓴이 유저
 
     @OneToMany(mappedBy = "board",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
