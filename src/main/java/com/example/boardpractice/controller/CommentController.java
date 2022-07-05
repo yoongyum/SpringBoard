@@ -57,7 +57,7 @@ public class CommentController {
         commentService.addComment(sessionMember,commentDto);
         model.addAttribute("selectedBoard",boardService.getBoard(commentDto.getBoardSeq()));
         model.addAttribute("member",sessionMember);
-        return "/board/comment/commentList :: #commentList";
+        return "/board/comment/commentContainer :: #commentContainer";
     }
 
     //대댓글 생성
