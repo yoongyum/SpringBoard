@@ -24,10 +24,10 @@
     </div>
     <script>
         $("#ajax_button").click(()=>{
-            var params = {
-                boardSeq : $('#boardSeq').val(),
+            const params = {
+                boardSeq: $('#boardSeq').val(),
                 commentContent: $('#commentContent').val()
-            }
+            };
             //ajax 통신
             $.ajax({
                 type:"POST",
@@ -35,7 +35,7 @@
                 data: params,
             }).done(function(fragment){
                 console.log(fragment);
-                $('#commentList').replaceWith(fragment);
+                $('#commentContainer').replaceWith(fragment);
             })
         })
     </script>
