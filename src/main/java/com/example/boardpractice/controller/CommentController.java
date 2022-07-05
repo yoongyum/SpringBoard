@@ -54,7 +54,6 @@ public class CommentController {
     @PostMapping("/comment")
     public String addComment(CommentDto commentDto, HttpSession session, Model model){
         SessionMember sessionMember = (SessionMember) session.getAttribute("member");
-        log.info("현재 회원 이메일: {}",sessionMember.getEmail());
         commentService.addComment(sessionMember,commentDto);
         model.addAttribute("selectedBoard",boardService.getBoard(commentDto.getBoardSeq()));
         model.addAttribute("member",sessionMember);
