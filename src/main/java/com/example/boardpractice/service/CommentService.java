@@ -82,13 +82,12 @@ public class CommentService {
     }
 
     //댓글 수정
-    public long updateComment(Long seq, String content) {
+    public void updateComment(Long seq, CommentDto commentDto) {
         Comment comment = commentRepository.findById(seq).orElse(null);
         assert comment != null;
-        comment.editContent(content);
+        comment.editContent(commentDto.getCommentContent());
         
         //변경 내용 저장
         commentRepository.save(comment);
-        return comment.getBoard().getSeq();
     }
 }
