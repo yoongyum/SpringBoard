@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -60,18 +57,20 @@ public class CommentController {
         return "/board/comment/commentContainer :: #commentContainer";
     }
 
+    @DeleteMapping("/comment/delete")
+    public String delComment(@RequestParam Long commentSeq,HttpSession session, Model model){
+        SessionMember sessionMember = (SessionMember) session.getAttribute("member");
+        Long boardSeq = commentService.removeComment(commentSeq);
+        model.addAttribute("selectedBoard",boardService.getBoard(boardSeq));
+        model.addAttribute("member",sessionMember);
+        return "/board/comment/commentContainer :: #commentContainer";
+    }
+
     //대댓글 생성
     @PostMapping("comment/reply{seq}")
     public ModelAndView replyComment(Long seq, @Valid CommentDto commentDto,HttpSession session){
         SessionMember sessionMember = (SessionMember) session.getAttribute("member");
         Long boardSeq = commentService.addReply(seq,sessionMember,commentDto);
-        return new ModelAndView("redirect:/board/view?seq="+boardSeq);
-    }
-
-    //댓글 삭제
-    @GetMapping("comment/delete{seq}")
-    public ModelAndView deleteComment(Long seq){
-        long boardSeq = commentService.removeComment(seq);
         return new ModelAndView("redirect:/board/view?seq="+boardSeq);
     }
 
