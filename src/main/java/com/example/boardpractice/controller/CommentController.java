@@ -51,7 +51,7 @@ public class CommentController {
         return "redirect:/board/view?seq="+seq;
     }
 
-    @PostMapping("/comment")
+    @PostMapping("/comment/insert")
     public String addComment(CommentDto commentDto, HttpSession session, Model model){
         SessionMember sessionMember = (SessionMember) session.getAttribute("member");
         commentService.addComment(sessionMember,commentDto);
