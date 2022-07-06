@@ -19,3 +19,17 @@ $("#ajax_button").click(()=>{
         $('#commentContainer').replaceWith(fragment);
     })
 })
+
+function deleteComment(commentSeq){
+    const params = {
+        commentSeq: commentSeq /*삭제할 댓글 번호*/ 
+    }
+    $.ajax({
+        type:"DELETE",
+        url:"/comment/delete",
+        data: params
+    }).done(function (fragment){
+        alert('댓글이 삭제되었습니다.✋')
+        $('#commentContainer').replaceWith(fragment);
+    })
+}
