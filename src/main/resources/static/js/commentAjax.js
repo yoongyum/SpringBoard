@@ -31,7 +31,6 @@ function deleteComment(commentSeq){
         url:"/comment/delete",
         data: params
     }).done(function (fragment){
-        alert('댓글이 삭제되었습니다.✋')
         $('#commentContainer').replaceWith(fragment);
     })
 }
@@ -55,7 +54,30 @@ function updateComment(commentSeq){
         url: "/comment/update",
         data: params
     }).done(function (fragment){
-        alert('댓글이 수정되었습니다.👍👍👍');
+        alert(fragment)
         $('#commentContainer').replaceWith(fragment);
+    })
+}
+
+//대댓글 입력
+function insertReply(parentSeq){
+    const content = $('#reply-content'+parentSeq);
+    if( content.val() === ""){
+        content.focus();
+        $('#reply-error'+parentSeq).css({display:'block'});
+        return;
+    }
+    $('#reply-error'+parentSeq).css({display:'none'});
+    const params = {
+        parentSeq: parentSeq, //부모 댓글
+        boardSeq: $('#boardSeq').val(),
+        commentContent: content.val()
+    }
+    $.ajax({
+        type: "POST",
+        url: "/comment/reply",
+        data: params
+    }).done(function (fragment){
+        $('#replyContainer'+parentSeq).replaceWith(fragment);
     })
 }

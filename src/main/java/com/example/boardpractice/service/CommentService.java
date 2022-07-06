@@ -60,7 +60,7 @@ public class CommentService {
     }
 
     //대댓글 생성
-    public Long addReply(Long seq, SessionMember sessionMember, CommentDto commentDto) {
+    public Comment addReply(Long seq, SessionMember sessionMember, CommentDto commentDto) {
         Comment comment = Comment.builder(commentDto).build();
 
         var member = memberRepository.findByEmail(sessionMember.getEmail()).orElse(null);
@@ -69,7 +69,7 @@ public class CommentService {
         assert parent != null;
         member.addReply(comment, parent);
 
-        return parent.getBoard().getSeq();
+        return parent;
     }
 
     //댓글 삭제

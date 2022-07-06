@@ -1,6 +1,7 @@
 package com.example.boardpractice.controller;
 
 import com.example.boardpractice.auth.dto.SessionMember;
+import com.example.boardpractice.domain.Comment;
 import com.example.boardpractice.dto.BoardDto;
 import com.example.boardpractice.dto.CommentDto;
 import com.example.boardpractice.service.BoardService;
@@ -79,18 +80,14 @@ public class CommentController {
     }
 
     //대댓글 생성
-    @PostMapping("comment/reply{seq}")
-    public ModelAndView replyComment(Long seq, @Valid CommentDto commentDto,HttpSession session){
+    @PostMapping("/comment/reply")
+    public String insertReply(@RequestParam Long parentSeq,CommentDto commentDto,HttpSession session,Model model){
         SessionMember sessionMember = (SessionMember) session.getAttribute("member");
-        Long boardSeq = commentService.addReply(seq,sessionMember,commentDto);
-        return new ModelAndView("redirect:/board/view?seq="+boardSeq);
+        Comment parent = commentService.addReply(parentSeq,sessionMember,commentDto);
+        System.out.println("확인: "+parentSeq);
+        model.addAttribute("selectedBoard",boardService.getBoard(commentDto.getBoardSeq()));
+        model.addAttribute("member",sessionMember);
+        model.addAttribute("comment",parent);
+        return "/board/comment/replyComment";
     }
-
-//    //댓글 수정
-//    @PostMapping("comment/update{seq}")
-//    public ModelAndView updateComment(Long seq, String commentContent){
-//        long boardSeq = commentService.updateComment(seq, commentContent);
-//        return new ModelAndView("redirect:/board/view?seq="+boardSeq);
-//    }
-
 }
