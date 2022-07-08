@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/loginForm.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<!-- 컴포넌트 영역    -->
+<div class="container py-5 align-item-center text-center" style="background-color: #bebebf">
+    <form action="/login" method="post">
+        <img src="/asset/img/Pofolog.png" alt="logo" style="width: 50%">
+        <div class="text-center">
+            <h2>로그인</h2>
+        </div>
+        <img class="btn-kakao my-2" src="/asset/img/kakaoBtn_Long.png" alt="kakaoLogin" type="button"
+             onclick="location.href = '/oauth2/authorization/kakao'"/>
+        <img class="btn-kakao my-2" src="/asset/img/googleBtn_Long.png" alt="googleLogin" type="button"
+             onclick="location.href = '/oauth2/authorization/google'"/>
+
+    </form>
+</div>
+</html>
