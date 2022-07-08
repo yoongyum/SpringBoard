@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <!--head-->
-<th:block th:replace="commonFragment/head :: headFragment('Home')"/>
+<th:block th:replace="commonFragment/head :: headFragment('pofolog')"/>
 
 <body class="bg-dark">
 <div class="container-main" style="position: absolute">
     <!--header-->
     <th:block th:replace="commonFragment/header :: headerFragment"/>
 
-    <main class="container-fluid" style="background-color: cornflowerblue">
-        <div class="row">
-            <!--LeftSideBar-->
-            <th:block th:replace="commonFragment/leftSide :: sideLFragment"/>
+    <main class="container-fluid mt-5" style="background-color: cornflowerblue">
+        <div class="d-flex align-items-center justify-content-center">
+<!--            &lt;!&ndash;LeftSideBar&ndash;&gt;-->
+<!--            <th:block th:replace="commonFragment/leftSide :: sideLFragment"/>-->
             <!--Board Container-->
             <th:block th:replace="board/boardContainer :: boardContainerFragment"/>
         </div>
